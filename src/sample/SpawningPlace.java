@@ -3,9 +3,10 @@ package sample;
 import java.util.Random;
 
 public class SpawningPlace {
+    public static final int RANGE = 2000;
     private Point spawningPoint;
     private Street street;
-    private Integer percentChance = 50;
+    private Integer percentChance;
 
     SpawningPlace(Point spawningPoint, Street street, Integer percentChance) {
         this.spawningPoint = spawningPoint;
@@ -50,8 +51,27 @@ public class SpawningPlace {
 
     private Car spawnCar(Point spawningPoint, Street street){
         Random rand = new Random();
-        Integer random = rand.nextInt(500) + spawningPoint.getY();
-        Car car = new Car(new Point(spawningPoint.getX(), spawningPoint.getY()+random));
+        int randomX = 0, randomY = 0;
+        Integer random = rand.nextInt(RANGE);
+        switch (street.getDirection()) {
+            case NORTH:
+                random -= spawningPoint.getY();
+                randomY -= random;
+                break;
+            case EAST:
+                random += spawningPoint.getX();
+                randomX += random;
+                break;
+            case SOUTH:
+                random += spawningPoint.getY();
+                randomY += random;
+                break;
+            case WEST:
+                random -= spawningPoint.getX();
+                randomX -= random;
+                break;
+        }
+        Car car = new Car(new Point(spawningPoint.getX() + randomX, spawningPoint.getY()+randomY));
         car.setStreet(street);
         car.setCurrentSpeed(5);
         return car;
