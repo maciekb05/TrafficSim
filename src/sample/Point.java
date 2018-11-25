@@ -1,19 +1,19 @@
 package sample;
 
-public class Point {
+class Point {
     private Integer x;
     private Integer y;
 
-    public Point(Integer x, Integer y) {
+    Point(Integer x, Integer y) {
         this.x = x;
         this.y = y;
     }
 
-    public Integer getX() {
+    Integer getX() {
         return x;
     }
 
-    public Integer getY() {
+    Integer getY() {
         return y;
     }
 }

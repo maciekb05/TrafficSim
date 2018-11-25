@@ -18,32 +18,32 @@ public class Street {
     private Point end;
     private Line line;
 
-    public Line getLine() {
+    Line getLine() {
         return line;
     }
 
-    public Direction getDirection() {
+    Direction getDirection() {
         return direction;
     }
 
     private Direction direction;
 
-    public Street(Point start, Point end, Direction direction) {
+    Street(Point start, Point end, Direction direction) {
         this.start = start;
         this.end = end;
         this.line = new Line(start.getX(), start.getY(), end.getX(), end.getY());
         this.direction = direction;
     }
 
-    public void setLeft(Street left) {
+    void setLeft(Street left) {
         this.left = left;
     }
 
-    public void setRight(Street right) {
+    void setRight(Street right) {
         this.right = right;
     }
 
-    public void setStraight(Street straight) {
+    void setStraight(Street straight) {
         this.straight = straight;
     }
 

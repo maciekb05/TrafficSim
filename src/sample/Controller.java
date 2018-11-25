@@ -8,14 +8,13 @@ import java.util.Random;
 
 public class Controller {
 
-    Model model;
-    Pane root;
+    private Pane root;
 
-    public Controller(Pane root) {
+    Controller(Pane root) {
         this.root = root;
     }
 
-    public void createModel() {
+    void initializeModel() {
         Point A = new Point(400, 0);
         Point B = new Point(420, 0);
         Point C = new Point(300, 100);
@@ -78,41 +77,25 @@ public class Controller {
         rynekWest.setStraight(czarnowiejskaWest);
         rynekWest.setRight(alejaNorthFromCzarnowiejska);
 
-        model = new Model();
-
-        model.streets.addAll(Arrays.asList(
+        Model.getInstance().getStreets().addAll(Arrays.asList(
                 czarnowiejskaEast, czarnowiejskaWest,
                 parkKrakowskiNorth,
                 alejaSouthToCzarnowiejska, alejaNorthToCzarnowiejska,
                 alejaSouthFromCzarnowiejska, alejaNorthFromCzarnowiejska,
                 rynekEast, rynekWest)
         );
-        model.spawningPlaces.add(new SpawningPlace(A, alejaSouthToCzarnowiejska, 60));
-        model.spawningPlaces.add(new SpawningPlace(H, czarnowiejskaEast, 40));
-        model.spawningPlaces.add(new SpawningPlace(M, alejaNorthToCzarnowiejska, 60));
-        model.spawningPlaces.add(new SpawningPlace(G, rynekWest, 20));
+        Model.getInstance().getSpawningPlaces().add(new SpawningPlace(A, alejaSouthToCzarnowiejska, 60));
+        Model.getInstance().getSpawningPlaces().add(new SpawningPlace(H, czarnowiejskaEast, 40));
+        Model.getInstance().getSpawningPlaces().add(new SpawningPlace(M, alejaNorthToCzarnowiejska, 60));
+        Model.getInstance().getSpawningPlaces().add(new SpawningPlace(G, rynekWest, 20));
     }
 
-    public void spawnCars(){
-        Random rand = new Random();
-        model.spawningPlaces.forEach((place) -> {
-            Integer random = rand.nextInt() % 100 + 1;
-            if(random < place.getPercentChance()){
-                Car car = spawnCar(place.getSpawningPoint(), place.getStreet());
-                model.cars.add(car);
-            }
-        });
+    public Pane getRoot() {
+        return root;
     }
 
-    private Car spawnCar(Point spawningPoint, Street street){
-        Car car = new Car(spawningPoint);
-        car.setStreet(street);
-        car.setCurrentSpeed(5);
-        return car;
-    }
-
-    public void drive(){
-        model.cars.forEach(Car::drive);
+    public void setRoot(Pane root) {
+        this.root = root;
     }
 
 }

@@ -1,11 +1,13 @@
 package sample;
 
+import java.util.Random;
+
 public class SpawningPlace {
     private Point spawningPoint;
     private Street street;
     private Integer percentChance = 50;
 
-    public SpawningPlace(Point spawningPoint, Street street, Integer percentChance) {
+    SpawningPlace(Point spawningPoint, Street street, Integer percentChance) {
         this.spawningPoint = spawningPoint;
         this.street = street;
         this.percentChance = percentChance;
@@ -33,5 +35,21 @@ public class SpawningPlace {
 
     public void setPercentChance(Integer percentChance) {
         this.percentChance = percentChance;
+    }
+
+    void spawnCars(){
+        Random rand = new Random();
+        Integer random = rand.nextInt() % 100 + 1;
+        if(random < getPercentChance()){
+            Car car = spawnCar(spawningPoint, street);
+            Model.getInstance().getCars().add(car);
+        }
+    }
+
+    private Car spawnCar(Point spawningPoint, Street street){
+        Car car = new Car(spawningPoint);
+        car.setStreet(street);
+        car.setCurrentSpeed(5);
+        return car;
     }
 }

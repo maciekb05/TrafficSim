@@ -9,41 +9,27 @@ import static java.lang.Thread.sleep;
 
 public class Main extends Application {
 
-    Controller controller;
-    Model model;
-
     @Override
     public void start(Stage primaryStage) throws Exception{
 
         primaryStage.setTitle("Hello World");
-
-
-
-
-
         Pane root = new Pane();
+        Controller controller = new Controller(root);
+        controller.initializeModel();
 
-        controller = new Controller(root);
-
-        controller.createModel();
-        model = controller.model;
-
-
-
-
-
-        model.streets.forEach(st -> root.getChildren().add(st.getLine()));
+        Model.getInstance().getStreets().forEach(st -> root.getChildren().add(st.getLine()));
         //model.cars.forEach(car -> root.getChildren().add(car.circle));
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
-        Simulation sim = new Simulation(controller);
+        Simulation sim = new Simulation();
         sim.start();
 
         while(true) {
             try {
                 Thread.sleep(1000);
-                controller.spawnCars();
-                model.cars.forEach(car -> root.getChildren().add(car.circle));
+                Model.getInstance().getSpawningPlaces().forEach(SpawningPlace::spawnCars);
+                Model.getInstance().getCars().forEach(car -> root.getChildren().add(car.getCircle()));
+
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
