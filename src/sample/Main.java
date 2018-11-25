@@ -18,22 +18,12 @@ public class Main extends Application {
         controller.initializeModel();
 
         Model.getInstance().getStreets().forEach(st -> root.getChildren().add(st.getLine()));
-        //model.cars.forEach(car -> root.getChildren().add(car.circle));
+        Model.getInstance().getSpawningPlaces().forEach(sp -> sp.spawnCars(500));
+        Model.getInstance().getCars().forEach(car -> root.getChildren().add(car.getCircle()));
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
         Simulation sim = new Simulation();
         sim.start();
-
-        while(true) {
-            try {
-                Thread.sleep(1000);
-                Model.getInstance().getSpawningPlaces().forEach(SpawningPlace::spawnCars);
-                Model.getInstance().getCars().forEach(car -> root.getChildren().add(car.getCircle()));
-
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-        }
     }
 
 

@@ -37,17 +37,21 @@ public class SpawningPlace {
         this.percentChance = percentChance;
     }
 
-    void spawnCars(){
+    void spawnCars(int amountOfCars){
         Random rand = new Random();
-        Integer random = rand.nextInt() % 100 + 1;
-        if(random < getPercentChance()){
-            Car car = spawnCar(spawningPoint, street);
-            Model.getInstance().getCars().add(car);
+        for (int i = 0; i < amountOfCars; i++) {
+            Integer random = rand.nextInt() % 100 + 1;
+            if(random < getPercentChance()){
+                Car car = spawnCar(spawningPoint, street);
+                Model.getInstance().addCar(car);
+            }
         }
     }
 
     private Car spawnCar(Point spawningPoint, Street street){
-        Car car = new Car(spawningPoint);
+        Random rand = new Random();
+        Integer random = rand.nextInt(500) + spawningPoint.getY();
+        Car car = new Car(new Point(spawningPoint.getX(), spawningPoint.getY()+random));
         car.setStreet(street);
         car.setCurrentSpeed(5);
         return car;

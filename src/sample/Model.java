@@ -8,11 +8,32 @@ public class Model {
     private List<Street> streets = new ArrayList<>();
     private List<Car> cars = new ArrayList<>();
     private List<SpawningPlace> spawningPlaces = new ArrayList<>();
+    private List<Point> points = new ArrayList<>();
+
+    public List<Point> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<Point> points) {
+        this.points = points;
+    }
 
     private Model(){}
 
-    public static Model getINSTANCE() {
-        return INSTANCE;
+    public void addStreet(Street street){
+        streets.add(street);
+    }
+
+    public void addCar(Car car){
+        cars.add(car);
+    }
+
+    public void addSpawningPlace(SpawningPlace place){
+        spawningPlaces.add(place);
+    }
+
+    public void addPoint(Point point){
+        points.add(point);
     }
 
     public static void setINSTANCE(Model INSTANCE) {

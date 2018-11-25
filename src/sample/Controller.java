@@ -31,6 +31,8 @@ public class Controller {
         Point M = new Point(420, 400);
         Point N = new Point(300, 200);
 
+        Model.getInstance().setPoints(Arrays.asList(A,B,C,D,E,F,G,H,J,K,L,M,N));
+
         Street czarnowiejskaEast = new Street(H, I, Direction.EAST);
         Street czarnowiejskaWest = new Street(E, D, Direction.WEST);
         Street parkKrakowskiNorth = new Street(N, C, Direction.NORTH);
@@ -84,10 +86,10 @@ public class Controller {
                 alejaSouthFromCzarnowiejska, alejaNorthFromCzarnowiejska,
                 rynekEast, rynekWest)
         );
-        Model.getInstance().getSpawningPlaces().add(new SpawningPlace(A, alejaSouthToCzarnowiejska, 60));
-        Model.getInstance().getSpawningPlaces().add(new SpawningPlace(H, czarnowiejskaEast, 40));
-        Model.getInstance().getSpawningPlaces().add(new SpawningPlace(M, alejaNorthToCzarnowiejska, 60));
-        Model.getInstance().getSpawningPlaces().add(new SpawningPlace(G, rynekWest, 20));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(A, alejaSouthToCzarnowiejska, 60));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(H, czarnowiejskaEast, 40));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(M, alejaNorthToCzarnowiejska, 60));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(G, rynekWest, 20));
     }
 
     public Pane getRoot() {
