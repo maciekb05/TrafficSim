@@ -17,15 +17,6 @@ public class Street {
     private Point start;
     private Point end;
     private Line line;
-
-    Line getLine() {
-        return line;
-    }
-
-    Direction getDirection() {
-        return direction;
-    }
-
     private Direction direction;
 
     Street(Point start, Point end, Direction direction) {
@@ -35,19 +26,67 @@ public class Street {
         this.direction = direction;
     }
 
-    void setLeft(Street left) {
+    public Street getLeft() {
+        return left;
+    }
+
+    public void setLeft(Street left) {
         this.left = left;
     }
 
-    void setRight(Street right) {
+    public Street getRight() {
+        return right;
+    }
+
+    public void setRight(Street right) {
         this.right = right;
     }
 
-    void setStraight(Street straight) {
+    public Street getStraight() {
+        return straight;
+    }
+
+    public void setStraight(Street straight) {
         this.straight = straight;
+    }
+
+    public Integer getSpeedLimit() {
+        return speedLimit;
     }
 
     public void setSpeedLimit(Integer speedLimit) {
         this.speedLimit = speedLimit;
+    }
+
+    public Point getStart() {
+        return start;
+    }
+
+    public void setStart(Point start) {
+        this.start = start;
+    }
+
+    public Point getEnd() {
+        return end;
+    }
+
+    public void setEnd(Point end) {
+        this.end = end;
+    }
+
+    public Line getLine() {
+        return line;
+    }
+
+    public void setLine(Line line) {
+        this.line = line;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 }

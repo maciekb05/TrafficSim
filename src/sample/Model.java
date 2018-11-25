@@ -28,6 +28,10 @@ public class Model {
         cars.add(car);
     }
 
+    public void doNothing() {return;}
+
+    public void deleteCar(Car car) { cars.remove(car);}
+
     public void addSpawningPlace(SpawningPlace place){
         spawningPlaces.add(place);
     }

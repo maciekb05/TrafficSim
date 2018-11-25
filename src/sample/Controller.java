@@ -86,10 +86,12 @@ public class Controller {
                 alejaSouthFromCzarnowiejska, alejaNorthFromCzarnowiejska,
                 rynekEast, rynekWest)
         );
-        Model.getInstance().addSpawningPlace(new SpawningPlace(A, alejaSouthToCzarnowiejska, 60));
-        Model.getInstance().addSpawningPlace(new SpawningPlace(H, czarnowiejskaEast, 40));
+
         Model.getInstance().addSpawningPlace(new SpawningPlace(M, alejaNorthToCzarnowiejska, 60));
         Model.getInstance().addSpawningPlace(new SpawningPlace(G, rynekWest, 20));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(A, alejaSouthToCzarnowiejska, 60));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(H, czarnowiejskaEast, 40));
+
     }
 
     public Pane getRoot() {

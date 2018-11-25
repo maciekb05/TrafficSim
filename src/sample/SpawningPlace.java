@@ -1,6 +1,11 @@
 package sample;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SpawningPlace {
     public static final int RANGE = 2000;
@@ -40,38 +45,59 @@ public class SpawningPlace {
 
     void spawnCars(int amountOfCars){
         Random rand = new Random();
+
+        Set<Integer> setOfRandomGaps = new HashSet<>();
+        Integer random;
         for (int i = 0; i < amountOfCars; i++) {
-            Integer random = rand.nextInt() % 100 + 1;
+            random = rand.nextInt(RANGE);
+            setOfRandomGaps.add(random);
+        }
+
+        List<Integer> sortedListOfRandomGaps = setOfRandomGaps.stream().sorted().collect(Collectors.toList());
+        setOfRandomGaps.clear();
+
+        for(int i = 0; i < sortedListOfRandomGaps.size() - 1; i++) {
+            if(Math.abs(sortedListOfRandomGaps.get(i) - sortedListOfRandomGaps.get(i+1)) > 8) {
+                setOfRandomGaps.add(sortedListOfRandomGaps.get(i));
+            }
+        }
+
+        for (Integer randomGap : setOfRandomGaps) {
+            random = rand.nextInt() % 100 + 1;
             if(random < getPercentChance()){
-                Car car = spawnCar(spawningPoint, street);
+                Car car = spawnCar(spawningPoint, street, randomGap);
                 Model.getInstance().addCar(car);
             }
         }
     }
 
-    private Car spawnCar(Point spawningPoint, Street street){
-        Random rand = new Random();
+    private Car spawnCar(Point spawningPoint, Street street, Integer gap){
+
         int randomX = 0, randomY = 0;
-        Integer random = rand.nextInt(RANGE);
+
         switch (street.getDirection()) {
-            case NORTH:
-                random -= spawningPoint.getY();
-                randomY -= random;
-                break;
-            case EAST:
-                random += spawningPoint.getX();
-                randomX += random;
-                break;
             case SOUTH:
-                random += spawningPoint.getY();
-                randomY += random;
+                gap -= spawningPoint.getY();
+                randomY -= gap;
+                randomX = spawningPoint.getX();
                 break;
             case WEST:
-                random -= spawningPoint.getX();
-                randomX -= random;
+                gap += spawningPoint.getX();
+                randomX += gap;
+                randomY = spawningPoint.getY();
+                break;
+            case NORTH:
+                gap += spawningPoint.getY();
+                randomY += gap;
+                randomX = spawningPoint.getX();
+                break;
+            case EAST:
+                gap -= spawningPoint.getX();
+                randomX -= gap;
+                randomY = spawningPoint.getY();
                 break;
         }
-        Car car = new Car(new Point(spawningPoint.getX() + randomX, spawningPoint.getY()+randomY));
+        Car car = new Car(new Point( randomX,  randomY));
         car.setStreet(street);
         car.setCurrentSpeed(5);
         return car;
