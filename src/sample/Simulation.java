@@ -12,7 +12,6 @@ public class Simulation extends Thread {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 }

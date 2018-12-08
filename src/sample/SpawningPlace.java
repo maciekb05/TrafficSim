@@ -45,11 +45,11 @@ public class SpawningPlace {
     void spawnCars(int amountOfCars){
         Random rand = new Random();
 
+        //todo: Maciek unikalne auta w polu
         Integer random;
         for (int i = 0; i < amountOfCars; i++) {
             random = rand.nextInt(street.getNumberOfPositions());
-
-            street.getCars().add(random, spawnCar(street.getPointOfPosition(random)));
+            street.getCars().set(random, spawnCar(street.getPointOfPosition(random)));
         }
     }
 

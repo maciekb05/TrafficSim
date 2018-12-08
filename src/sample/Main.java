@@ -31,3 +31,13 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+
+/*todo:
+ światła drogowe***   Aga
+ wykrywanie skręcania **  Aga
+ przyspieszanie skręcanie model Nagela    Konrad
+ stop przed koncem ulicy lub wybranie kolejnej Konrad
+ Update położenia samochodow na ulicy (liscie) Maciek
+
+*/
