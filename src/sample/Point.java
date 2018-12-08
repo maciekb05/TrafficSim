@@ -9,6 +9,10 @@ class Point {
         this.x = x * this.multiplayer;
         this.y = y * this.multiplayer;
     }
+    Point(Integer x, Integer y, boolean withoutScaling) {
+        this.x = x;
+        this.y = y;
+    }
 
     Integer getX() {
         return x;

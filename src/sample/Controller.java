@@ -196,8 +196,6 @@ public class Controller {
         Model.getInstance().addSpawningPlace(new SpawningPlace(Q1, Q, 20));
         Model.getInstance().addSpawningPlace(new SpawningPlace(R1, R, 60));
 
-
-
     }
 
     public Pane getRoot() {

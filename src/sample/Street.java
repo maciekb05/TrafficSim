@@ -17,6 +17,8 @@ public class Street {
     private Direction direction;
     private List<Car> cars;
     private boolean greenLight = true;
+    private int numberOfPositions;
+    private double lenght;
 
     Street(Point start, Point end) {
         this.start = start;
@@ -26,9 +28,33 @@ public class Street {
 
         int y = Math.abs(start.getY() - end.getY());
         int x = Math.abs(start.getX() - end.getX());
-        double lenght = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
-        int numberOfPositions = (int)(lenght/10);
+        lenght = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+
+        numberOfPositions = (int)(lenght/10);
+
         cars = new ArrayList<>(numberOfPositions);
+
+        for( int i = 0; i < numberOfPositions; i++) {
+            cars.add(null);
+        }
+    }
+
+    public Point getPointOfPosition(int index) {
+        int x = (int)(index * direction.getX() * 10 + start.getX());
+        int y = (int)(index * direction.getY() * 10 + start.getY());
+        return new Point(x,y,true);
+    }
+
+    public int getNumberOfPositions() {
+        return numberOfPositions;
+    }
+
+    public void setNumberOfPositions(int numberOfPositions) {
+        this.numberOfPositions = numberOfPositions;
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     public void addCar(Car car) {

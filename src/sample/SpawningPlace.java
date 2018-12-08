@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SpawningPlace {
-    public static final int RANGE = 2000;
     private Point spawningPoint;
     private Street street;
     private Integer percentChance;
@@ -46,43 +45,18 @@ public class SpawningPlace {
     void spawnCars(int amountOfCars){
         Random rand = new Random();
 
-        Set<Integer> setOfRandomGaps = new HashSet<>();
         Integer random;
         for (int i = 0; i < amountOfCars; i++) {
-            random = rand.nextInt(RANGE);
-            setOfRandomGaps.add(random);
-        }
+            random = rand.nextInt(street.getNumberOfPositions());
 
-        List<Integer> sortedListOfRandomGaps = setOfRandomGaps.stream().sorted().collect(Collectors.toList());
-        setOfRandomGaps.clear();
-
-        for(int i = 0; i < sortedListOfRandomGaps.size() - 1; i++) {
-            if(Math.abs(sortedListOfRandomGaps.get(i) - sortedListOfRandomGaps.get(i+1)) > 10) {
-                setOfRandomGaps.add(sortedListOfRandomGaps.get(i));
-            }
-        }
-
-        for (Integer randomGap : setOfRandomGaps) {
-            random = rand.nextInt() % 100 + 1;
-            if(random < getPercentChance()){
-                Car car = spawnCar(spawningPoint, street, randomGap);
-                Model.getInstance().addCar(car);
-            }
+            street.getCars().add(random, spawnCar(street.getPointOfPosition(random)));
         }
     }
 
-    private Car spawnCar(Point spawningPoint, Street street, Integer gap){
-
-        int randomX = 0, randomY = 0;
-
-        Direction direction = street.getDirection();
-        gap -= spawningPoint.getX();
-        randomX -= gap;
-        randomY = spawningPoint.getY();
-
-        Car car = new Car(new Point( randomX,  randomY));
+    private Car spawnCar(Point position){
+        Car car = new Car(position);
         car.setStreet(street);
-        car.setCurrentSpeed(5);
+        car.setCurrentSpeed(25);
         return car;
     }
 }
