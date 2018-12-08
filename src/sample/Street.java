@@ -2,28 +2,22 @@ package sample;
 
 import javafx.scene.shape.Line;
 
-enum Direction {
-    NORTH,
-    EAST,
-    SOUTH,
-    WEST
-}
 
 public class Street {
-    private Street left;
-    private Street right;
-    private Street straight;
+    private Street left = null;
+    private Street right = null;
+    private Street straight = null;
     private Integer speedLimit;
     private Point start;
     private Point end;
     private Line line;
     private Direction direction;
 
-    Street(Point start, Point end, Direction direction) {
+    Street(Point start, Point end) {
         this.start = start;
         this.end = end;
         this.line = new Line(start.getX(), start.getY(), end.getX(), end.getY());
-        this.direction = direction;
+        this.direction = new Direction(this.start, this.end);
     }
 
     public Street getLeft() {

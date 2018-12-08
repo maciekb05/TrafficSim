@@ -8,100 +8,100 @@ public class Car {
     private Integer currentSpeed;
     private Street street;
 
-    void drive(){
-        switch (street.getDirection()) {
-            case NORTH:
-                circle.setCenterY(circle.getCenterY() - currentSpeed);
-                break;
-            case EAST:
-                circle.setCenterX(circle.getCenterX() + currentSpeed);
-                break;
-            case SOUTH:
-                circle.setCenterY(circle.getCenterY() + currentSpeed);
-                break;
-            case WEST:
-                circle.setCenterX(circle.getCenterX() - currentSpeed);
-                break;
-        }
-    }
-
-    public void driveRight(){
-        switch (street.getDirection()) {
-            case NORTH:
-                circle.setCenterY(circle.getCenterY() - currentSpeed);
-                if(circle.getCenterY() < street.getEnd().getY()){
-                    circle.setCenterY(street.getEnd().getY());
-                    if(street.getRight() == null){
-                        currentSpeed = 0;
-                        break;
-                    }
-                    street = street.getRight();
-                }
-                break;
-            case EAST:
-                circle.setCenterX(circle.getCenterX() + currentSpeed);
-                if(circle.getCenterX() > street.getEnd().getX()){
-                    circle.setCenterX(street.getEnd().getX());
-                    if(street.getRight() == null){
-                        currentSpeed = 0;
-                        break;
-                    }
-                    street = street.getRight();
-                }
-                break;
-            case SOUTH:
-                circle.setCenterY(circle.getCenterY() + currentSpeed);
-                if(circle.getCenterY() > street.getEnd().getY()){
-                    circle.setCenterY(street.getEnd().getY());
-                    if(street.getRight() == null){
-                        currentSpeed = 0;
-                        break;
-                    }
-                    street = street.getRight();
-                }
-                break;
-            case WEST:
-                circle.setCenterX(circle.getCenterX() - currentSpeed);
-                if(circle.getCenterX() < street.getEnd().getX()){
-                    circle.setCenterX(street.getEnd().getX());
-                    if(street.getRight() == null){
-                        currentSpeed = 0;
-                        break;
-                    }
-                    street = street.getRight();
-                }
-                break;
-        }
-    }
-
-    void driveLeft(){
-        switch (street.getDirection()) {
-            case NORTH:
-                circle.setCenterY(circle.getCenterY() - currentSpeed);
-                if(circle.getCenterY() < street.getEnd().getY()){
-                    turnLeftIfYouCan();
-                }
-                break;
-            case EAST:
-                circle.setCenterX(circle.getCenterX() + currentSpeed);
-                if(circle.getCenterX() > street.getEnd().getX()){
-                    turnLeftIfYouCan();
-                }
-                break;
-            case SOUTH:
-                circle.setCenterY(circle.getCenterY() + currentSpeed);
-                if(circle.getCenterY() > street.getEnd().getY()){
-                    turnLeftIfYouCan();
-                }
-                break;
-            case WEST:
-                circle.setCenterX(circle.getCenterX() - currentSpeed);
-                if(circle.getCenterX() < street.getEnd().getX()){
-                    turnLeftIfYouCan();
-                }
-                break;
-        }
-    }
+//    void drive(){
+////        switch (street.getDirection()) {
+////            case NORTH:
+////                circle.setCenterY(circle.getCenterY() - currentSpeed);
+////                break;
+////            case EAST:
+////                circle.setCenterX(circle.getCenterX() + currentSpeed);
+////                break;
+////            case SOUTH:
+////                circle.setCenterY(circle.getCenterY() + currentSpeed);
+////                break;
+////            case WEST:
+////                circle.setCenterX(circle.getCenterX() - currentSpeed);
+////                break;
+////        }
+//    }
+//
+//    public void driveRight(){
+//        switch (street.getDirection()) {
+//            case NORTH:
+//                circle.setCenterY(circle.getCenterY() - currentSpeed);
+//                if(circle.getCenterY() < street.getEnd().getY()){
+//                    circle.setCenterY(street.getEnd().getY());
+//                    if(street.getRight() == null){
+//                        currentSpeed = 0;
+//                        break;
+//                    }
+//                    street = street.getRight();
+//                }
+//                break;
+//            case EAST:
+//                circle.setCenterX(circle.getCenterX() + currentSpeed);
+//                if(circle.getCenterX() > street.getEnd().getX()){
+//                    circle.setCenterX(street.getEnd().getX());
+//                    if(street.getRight() == null){
+//                        currentSpeed = 0;
+//                        break;
+//                    }
+//                    street = street.getRight();
+//                }
+//                break;
+//            case SOUTH:
+//                circle.setCenterY(circle.getCenterY() + currentSpeed);
+//                if(circle.getCenterY() > street.getEnd().getY()){
+//                    circle.setCenterY(street.getEnd().getY());
+//                    if(street.getRight() == null){
+//                        currentSpeed = 0;
+//                        break;
+//                    }
+//                    street = street.getRight();
+//                }
+//                break;
+//            case WEST:
+//                circle.setCenterX(circle.getCenterX() - currentSpeed);
+//                if(circle.getCenterX() < street.getEnd().getX()){
+//                    circle.setCenterX(street.getEnd().getX());
+//                    if(street.getRight() == null){
+//                        currentSpeed = 0;
+//                        break;
+//                    }
+//                    street = street.getRight();
+//                }
+//                break;
+//        }
+//    }
+//
+//    void driveLeft(){
+//        switch (street.getDirection()) {
+//            case NORTH:
+//                circle.setCenterY(circle.getCenterY() - currentSpeed);
+//                if(circle.getCenterY() < street.getEnd().getY()){
+//                    turnLeftIfYouCan();
+//                }
+//                break;
+//            case EAST:
+//                circle.setCenterX(circle.getCenterX() + currentSpeed);
+//                if(circle.getCenterX() > street.getEnd().getX()){
+//                    turnLeftIfYouCan();
+//                }
+//                break;
+//            case SOUTH:
+//                circle.setCenterY(circle.getCenterY() + currentSpeed);
+//                if(circle.getCenterY() > street.getEnd().getY()){
+//                    turnLeftIfYouCan();
+//                }
+//                break;
+//            case WEST:
+//                circle.setCenterX(circle.getCenterX() - currentSpeed);
+//                if(circle.getCenterX() < street.getEnd().getX()){
+//                    turnLeftIfYouCan();
+//                }
+//                break;
+//        }
+//    }
 
     private void turnLeftIfYouCan() {
         if (street.getLeft() == null) {

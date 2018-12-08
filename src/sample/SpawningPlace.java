@@ -75,28 +75,28 @@ public class SpawningPlace {
 
         int randomX = 0, randomY = 0;
 
-        switch (street.getDirection()) {
-            case SOUTH:
-                gap -= spawningPoint.getY();
-                randomY -= gap;
-                randomX = spawningPoint.getX();
-                break;
-            case WEST:
-                gap += spawningPoint.getX();
-                randomX += gap;
-                randomY = spawningPoint.getY();
-                break;
-            case NORTH:
-                gap += spawningPoint.getY();
-                randomY += gap;
-                randomX = spawningPoint.getX();
-                break;
-            case EAST:
-                gap -= spawningPoint.getX();
-                randomX -= gap;
-                randomY = spawningPoint.getY();
-                break;
-        }
+//        switch (street.getDirection()) {
+//            case SOUTH:
+//                gap -= spawningPoint.getY();
+//                randomY -= gap;
+//                randomX = spawningPoint.getX();
+//                break;
+//            case WEST:
+//                gap += spawningPoint.getX();
+//                randomX += gap;
+//                randomY = spawningPoint.getY();
+//                break;
+//            case NORTH:
+//                gap += spawningPoint.getY();
+//                randomY += gap;
+//                randomX = spawningPoint.getX();
+//                break;
+//            case EAST:
+//                gap -= spawningPoint.getX();
+//                randomX -= gap;
+//                randomY = spawningPoint.getY();
+//                break;
+//        }
         Car car = new Car(new Point( randomX,  randomY));
         car.setStreet(street);
         car.setCurrentSpeed(5);
