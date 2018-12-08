@@ -180,10 +180,23 @@ public class Controller {
                 RD)
         );
 
-//        Model.getInstance().addSpawningPlace(new SpawningPlace(M, alejaNorthToCzarnowiejska, 60));
-//        Model.getInstance().addSpawningPlace(new SpawningPlace(G, rynekWest, 20));
-//        Model.getInstance().addSpawningPlace(new SpawningPlace(A, alejaSouthToCzarnowiejska, 60));
-//        Model.getInstance().addSpawningPlace(new SpawningPlace(H, czarnowiejskaEast, 40));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(A1, A, 60));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(B1, B, 20));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(C1, C, 60));
+
+        Model.getInstance().addSpawningPlace(new SpawningPlace(F1, F, 60));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(G1, G, 20));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(H1, H, 60));
+
+        Model.getInstance().addSpawningPlace(new SpawningPlace(K1, K, 60));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(L1, L, 20));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(M1, M, 60));
+
+        Model.getInstance().addSpawningPlace(new SpawningPlace(P1, P, 60));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(Q1, Q, 20));
+        Model.getInstance().addSpawningPlace(new SpawningPlace(R1, R, 60));
+
+
 
     }
 
