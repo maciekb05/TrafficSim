@@ -9,7 +9,6 @@ public class Car {
     private Street street;
 
     void drive() {
-        System.out.println("jade");
         circle.setCenterX(circle.getCenterX() + currentSpeed * street.getDirection().getX());
         circle.setCenterY(circle.getCenterY() + currentSpeed * street.getDirection().getY());
     }

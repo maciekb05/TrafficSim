@@ -16,57 +16,58 @@ public class Controller {
     }
 
     void initializeModel() {
+        int mult = 25;
         // street 1
-        Point A1 = new Point(11, 0);
-        Point A2 = new Point(11, 8);
-        Point B1 = new Point(12, 0);
-        Point B2 = new Point(12, 8);
-        Point C1 = new Point(13, 0);
-        Point C2 = new Point(13, 8);
+        Point A1 = new Point(11*mult, 0*mult);
+        Point A2 = new Point(11*mult, 8*mult);
+        Point B1 = new Point(12*mult, 0*mult);
+        Point B2 = new Point(12*mult, 8*mult);
+        Point C1 = new Point(13*mult, 0*mult);
+        Point C2 = new Point(13*mult, 8*mult);
 
-        Point D1 = new Point(16, 8);
-        Point D2 = new Point(16, 0);
-        Point E1 = new Point(17, 8);
-        Point E2 = new Point(17, 0);
+        Point D1 = new Point(16*mult, 8*mult);
+        Point D2 = new Point(16*mult, 0*mult);
+        Point E1 = new Point(17*mult, 8*mult);
+        Point E2 = new Point(17*mult, 0*mult);
 
         // street 2
-        Point F1 = new Point(28, 11);
-        Point F2 = new Point(20, 11);
-        Point G1 = new Point(28, 12);
-        Point G2 = new Point(20, 12);
-        Point H1 = new Point(28, 13);
-        Point H2 = new Point(20, 13);
+        Point F1 = new Point(28*mult, 11*mult);
+        Point F2 = new Point(20*mult, 11*mult);
+        Point G1 = new Point(28*mult, 12*mult);
+        Point G2 = new Point(20*mult, 12*mult);
+        Point H1 = new Point(28*mult, 13*mult);
+        Point H2 = new Point(20*mult, 13*mult);
 
-        Point I1 = new Point(20, 16);
-        Point I2 = new Point(28, 16);
-        Point J1 = new Point(20, 17);
-        Point J2 = new Point(28, 17);
+        Point I1 = new Point(20*mult, 16*mult);
+        Point I2 = new Point(28*mult, 16*mult);
+        Point J1 = new Point(20*mult, 17*mult);
+        Point J2 = new Point(28*mult, 17*mult);
 
         // street 3
-        Point K1 = new Point(17, 28);
-        Point K2 = new Point(17, 20);
-        Point L1 = new Point(16, 28);
-        Point L2 = new Point(16, 20);
-        Point M1 = new Point(15, 28);
-        Point M2 = new Point(15, 20);
+        Point K1 = new Point(17*mult, 28*mult);
+        Point K2 = new Point(17*mult, 20*mult);
+        Point L1 = new Point(16*mult, 28*mult);
+        Point L2 = new Point(16*mult, 20*mult);
+        Point M1 = new Point(15*mult, 28*mult);
+        Point M2 = new Point(15*mult, 20*mult);
 
-        Point N1 = new Point(12, 20);
-        Point N2 = new Point(12, 28);
-        Point O1 = new Point(11, 20);
-        Point O2 = new Point(11, 28);
+        Point N1 = new Point(12*mult, 20*mult);
+        Point N2 = new Point(12*mult, 28*mult);
+        Point O1 = new Point(11*mult, 20*mult);
+        Point O2 = new Point(11*mult, 28*mult);
 
         // street 4
-        Point P1 = new Point(0, 17);
-        Point P2 = new Point(8, 17);
-        Point Q1 = new Point(0, 16);
-        Point Q2 = new Point(8, 16);
-        Point R1 = new Point(0, 15);
-        Point R2 = new Point(8, 15);
+        Point P1 = new Point(0*mult, 17*mult);
+        Point P2 = new Point(8*mult, 17*mult);
+        Point Q1 = new Point(0*mult, 16*mult);
+        Point Q2 = new Point(8*mult, 16*mult);
+        Point R1 = new Point(0*mult, 15*mult);
+        Point R2 = new Point(8*mult, 15*mult);
 
-        Point S1 = new Point(8, 12);
-        Point S2 = new Point(0, 12);
-        Point T1 = new Point(8, 11);
-        Point T2 = new Point(0, 11);
+        Point S1 = new Point(8*mult, 12*mult);
+        Point S2 = new Point(0*mult, 12*mult);
+        Point T1 = new Point(8*mult, 11*mult);
+        Point T2 = new Point(0*mult, 11*mult);
 
 
         Model.getInstance().setPoints(Arrays.asList(A1,A2,B1,B2,C1,C2,D1,D2,E1,E2,F1,F2,G1,G2,H1,H2,

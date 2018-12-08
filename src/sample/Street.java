@@ -42,7 +42,7 @@ public class Street {
     public Point getPointOfPosition(int index) {
         int x = (int)(index * direction.getX() * 10 + start.getX());
         int y = (int)(index * direction.getY() * 10 + start.getY());
-        return new Point(x,y,true);
+        return new Point(x,y);
     }
 
     public int getNumberOfPositions() {
