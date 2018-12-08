@@ -12,7 +12,6 @@ public class Direction {
 
         this.x = a*x;
         this.y = b*x;
-
     }
 
     public Double getX(){

@@ -2,6 +2,9 @@ package sample;
 
 import javafx.scene.shape.Line;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Street {
     private Street left = null;
@@ -12,12 +15,28 @@ public class Street {
     private Point end;
     private Line line;
     private Direction direction;
+    private List<Car> cars;
+    private boolean greenLight = true;
 
     Street(Point start, Point end) {
         this.start = start;
         this.end = end;
         this.line = new Line(start.getX(), start.getY(), end.getX(), end.getY());
         this.direction = new Direction(this.start, this.end);
+
+        int y = Math.abs(start.getY() - end.getY());
+        int x = Math.abs(start.getX() - end.getX());
+        double lenght = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+        int numberOfPositions = (int)(lenght/10);
+        cars = new ArrayList<>(numberOfPositions);
+    }
+
+    public void addCar(Car car) {
+        this.cars.add(car);
+    }
+
+    public void toggleLight() {
+        greenLight = !greenLight;
     }
 
     public Street getLeft() {

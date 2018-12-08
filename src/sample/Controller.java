@@ -16,7 +16,6 @@ public class Controller {
     }
 
     void initializeModel() {
-        int mult = 25;
         // street 1
         Point A1 = new Point(11, 0);
         Point A2 = new Point(11, 8);
