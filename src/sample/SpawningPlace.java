@@ -59,7 +59,7 @@ public class SpawningPlace {
     private Car spawnCar(Point position){
         Car car = new Car(position);
         car.setStreet(street);
-        car.setCurrentSpeed(25);
+        car.setCurrentSpeed(5);
         Model.getInstance().getCars().add(car);
         return car;
     }
