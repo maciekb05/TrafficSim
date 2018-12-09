@@ -18,7 +18,7 @@ public class Main extends Application {
         controller.initializeModel();
 
         Model.getInstance().getStreets().forEach(st -> root.getChildren().add(st.getLine()));
-        Model.getInstance().getSpawningPlaces().forEach(sp -> sp.spawnCars(2));
+        Model.getInstance().getSpawningPlaces().forEach(sp -> sp.spawnCars(5));
         Model.getInstance().getCars().forEach(car -> root.getChildren().add(car.getCircle()));
         primaryStage.setScene(new Scene(root, 700, 700));
         primaryStage.show();

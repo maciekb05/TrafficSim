@@ -6,9 +6,13 @@ public class Simulation extends Thread {
     @Override
     public void run() {
         while(true) {
+            Model.getInstance().getCars().forEach(Car::updateDistanceFromNextCar);
+            Model.getInstance().getCars().forEach(Car::setTheSpeedDependingOnTheSpeedAndDistanceOfTheNextCar);
             Model.getInstance().getCars().forEach(Car::drive);
+            Model.getInstance().getCars().forEach(Car::updateActualPosition);
+            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXX");
             try {
-                sleep(200);
+                sleep(50);
             } catch (Exception e) {
                 e.printStackTrace();
             }
