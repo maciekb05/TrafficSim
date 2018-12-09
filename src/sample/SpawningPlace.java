@@ -51,15 +51,16 @@ public class SpawningPlace {
         for (int i = 0; i < amountOfCars; i++) {
             random = rand.nextInt(street.getNumberOfPositions());
             if(street.getCars().get(random) == null) {
-                street.getCars().set(random, spawnCar(street.getPointOfPosition(random)));
+                street.getCars().set(random, spawnCar(street.getPointOfPosition(random), random));
             }
         }
     }
 
-    private Car spawnCar(Point position){
+    private Car spawnCar(Point position,int random){
         Car car = new Car(position);
         car.setStreet(street);
-        car.setCurrentSpeed(5);
+        car.setCurrentSpeed(2);
+        car.setCurrentPosition(random);
         Model.getInstance().getCars().add(car);
         return car;
     }

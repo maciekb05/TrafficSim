@@ -10,7 +10,7 @@ public class Street {
     private Street left = null;
     private Street right = null;
     private Street straight = null;
-    private Integer speedLimit;
+    private Integer speedLimit = 5;
     private Point start;
     private Point end;
     private Line line;
