@@ -24,9 +24,6 @@ public class Car implements Comparable<Car> {
         circle.setCenterX(circle.getCenterX() + currentSpeed * street.getDirection().getX() * 0.2);
         circle.setCenterY(circle.getCenterY() + currentSpeed * street.getDirection().getY() * 0.2);
 
-
-
-
     }
 
     void setTheSpeedDependingOnTheSpeedAndDistanceOfTheNextCar() {
@@ -39,11 +36,11 @@ public class Car implements Comparable<Car> {
     }
 
     void updateDistanceFromNextCar() {
-        this.distanceFromNextCar = street.getNumberOfPositions() - this.currentPosition;
+        this.distanceFromNextCar = street.getNumberOfPositions() - 1 - this.currentPosition;
         this.nextCarSpeed = 0;
         for (int i=this.currentPosition + 1; i<street.getNumberOfPositions();i++){
             if (street.getCars().get(i) != null){
-                this.distanceFromNextCar = street.getCars().get(i).getCurrentPosition() - this.currentPosition - 1;
+                this.distanceFromNextCar = i - this.currentPosition -1;
                 this.nextCarSpeed = street.getCars().get(i).getCurrentSpeed();
                 break;
             }
@@ -55,10 +52,9 @@ public class Car implements Comparable<Car> {
         int y =(int) (circle.getCenterY() - street.getStart().getY());
         int z =(int) Math.sqrt(Math.pow(x,2) + Math.pow(y,2))/10;
 
-        street.getCars().set(currentPosition, null);
-        if (z <= street.getNumberOfPositions() && currentPosition <= street.getNumberOfPositions()){
+        if (z < street.getNumberOfPositions() && currentPosition < street.getNumberOfPositions()){
             street.getCars().set(currentPosition, null);
-            street.getCars().add(z,this);
+            street.getCars().set(z,this);
             this.currentPosition = z;
         }
 //        System.out.println("Y= " + y + " X= " + x + " Z= " + z + " Street.numberOfPositions= " + street.getNumberOfPositions());
