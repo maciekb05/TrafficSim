@@ -24,6 +24,8 @@ public class Main extends Application {
         primaryStage.show();
         Simulation sim = new Simulation();
         sim.start();
+        SimulateLights simLights = new SimulateLights();
+        simLights.start();
     }
 
 

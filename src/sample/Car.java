@@ -19,7 +19,7 @@ public class Car implements Comparable<Car> {
     void drive() {
 
 
-        System.out.println("Car: poz= "+ this.currentPosition + " speed= "+ this.currentSpeed + " NextCar dis=" + this.distanceFromNextCar + " speed= " + this.nextCarSpeed);
+//        System.out.println("Car: poz= "+ this.currentPosition + " speed= "+ this.currentSpeed + " NextCar dis=" + this.distanceFromNextCar + " speed= " + this.nextCarSpeed);
 
         circle.setCenterX(circle.getCenterX() + currentSpeed * street.getDirection().getX() * 0.2);
         circle.setCenterY(circle.getCenterY() + currentSpeed * street.getDirection().getY() * 0.2);

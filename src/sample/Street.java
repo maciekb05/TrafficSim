@@ -65,6 +65,10 @@ public class Street {
         greenLight = !greenLight;
     }
 
+    public String whatLight(){
+        return greenLight ? "zielone światło" : "czerwone światło";
+    }
+
     public Street getLeft() {
         return left;
     }
