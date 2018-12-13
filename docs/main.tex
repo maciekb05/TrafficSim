@@ -1,0 +1,89 @@
+\documentclass{sprawozdanie-agh}
+
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{pdfpages}
+\usepackage{float}
+\usepackage{anyfontsize}
+\usepackage{graphicx}
+\usepackage{multicol}
+ 
+\setlength\columnsep{1cm}
+
+\makeatletter 
+
+\begin{document}   
+
+	\przedmiot{Modelowanie i symulacja systemów}
+	\tytul{„Traffic Sim”}
+	\podtytul{Symulacja ruchu samochodów w mieście}
+	\kierunek{Informatyka, III rok, 2018/2019}
+	\autor{Konrad Gębczyński, Agnieszka Zadworny, Maciej Bielech}
+	\data{Kraków, 13 grudnia 2018}
+
+	\stronatytulowa{}
+
+	\begin{multicols}{2}
+
+	\section{Wstęp}
+
+		Rozwój sektora transportu spowodował znaczny wzrost ilości pojazdów poruszających się po ulicach miast. Wiąże się to z wzmożonym ruchem, utrudniającym sprawne przemieszczanie się. Rozbudowa sieci dróg jest jednym z rozwiązań tego problemu, lecz istnieją też inne sposoby na usprawnienie ruchu ulicznego, takie jak inteligentne sygnalizacje świetlne, skrzyżowania bezkolizyjne, systemy badające ruch w czasie rzeczywistym i sterujące nim w zależności od potrzeb.
+
+		Tematem niniejszej pracy jest zamodelowanie i zasymulowanie jednego ze sposobów ograniczania zatorów, mianowicie skrzyżowania bezkolizyjnego. W pracy poruszymy takie kwestie jak: automaty komórkowe, model Nagela-Schreckenberga, czy listy kolejkujące.
+
+	\section{Automaty komórkowe}
+
+		Automat komórkowy wykorzystywany jest w różnorakich symulacjach. Automaty komórkowe definiowane są najczęsciej na dwa sposoby:
+
+		\begin{itemize}
+			\item Definicja Ferbera
+				\begin{quote}
+					Automaty komórkowe są dyskretnym, dynamicznym systemem, którego zachowanie jest całkowicie określone w warunkach lokalnych relacji
+				\end{quote}
+			\item Definicja Weimera
+				\begin{quote}
+					Automat komórkowy to czwórka $(L,N,S,f)$, gdzie
+					\begin{itemize}
+						\item L - przestrzeń podzielona na siatkę komórek,
+						\item S - zbiór skończonych stanów,
+						\item N - zbiór sąsiadów danej komórki,
+						\item f - funkcja zmiany konfiguracji w poszczególnych komórkach.
+					\end{itemize}
+				\end{quote}
+		\end{itemize}
+
+		W ogólności automat komórkowy to matematyczny model dyskretny, dynamicznych procesów zachodzących w czasie. Rozpatrywana przestrzeń w naszej aplikacji będzie listą pozycji na których może znajdować się pojazd na drodze. Stan komórki będzie zmieniał się w dyskretnych chwilach czasu, podczas gdy samochody będą się poruszać. Ruch pojazdu zależał będzie od prędkości maksymalnej, jaką można poruszać się na drodze, od odległości od najbliższego sąsiada poruszającego się tym samym pasem ruchu oraz od poprzedniego stanu w jakim znajdował się rozpatrywany samochód. Warunkiem brzegowym naszej przestrzeni będzie dojechanie do sygnalizacji świetlnej lub końca drogi, w takiej sytuacji kierowca oczekuje na zmianę sygnalizacji, lub wybiera ulicę którą chce podrózować dalej.
+
+	\section{Model Nagela-Schreckenberga}
+
+		Model ten opisuje uproszczony model poruszania się samochodów. Jednopasmowa i jednokierunkowa droga zostaje podzielona na odcinki o długości przeciętnego samochodu w raz z wolnym miejscem z przodu i z tyłu. W każdej komórce w danym czasie może znajdować się tylko jeden samochód.
+
+		Funkcja przejścia podzielona została na etapy:
+
+		\begin{itemize}
+			\item Przyspieszanie - wszystkie samochody zwiększają swoją prędkość, jeżeli do tej pory jechały z prędkością mniejszą niż maksymalna na danej ulicy, 
+			\item Hamowanie - jeśli liczba komórek wolnych od samochodu do samochodu jadącego przed rozpatrywanym jest mniejsza niż prędkość samochodu, to kierowca samochodu musi dostosować prędkość, aby uniknąć kolizji,
+			\item Zdarzenia losowe - samochód zmniejsza prędkość z uwagi na nieprzewidziane zachowanie na drodze, z określonym prawdopodobieństwem,
+			\item Przesunięcie - wszystkie samochody przesuwają się o określony dystans, zgodnie z prędkością obliczoną w poprzednich krokach.
+		\end{itemize}
+
+	\section{Sygnalizacja świetlna}
+
+		Dodatkiem do modelu Nagela-Schreckenberga może być model sygnalizacji świetlnej. Sygnalizacja jest systemem komunikującym kierowcom, możliwość kontynuowania jazdy, co wpływa na zwiększenie poziomu bezpieczeństwa.
+
+		Aby zamodelować sygnalizację świetlną dodajemy kilka rozszeżeń do naszego modelu:
+		\begin{itemize}
+			\item samochód dojeżdzający do sygnalizacji świetlnej zmniejsza swoją prędkość,
+			\item jeśli kierowca dojedzie do sygnalizacji, a sygnalizacja wskazuje na światło zielone, kierowca kontynuuje jazdę,
+			\item jeśli kierowca dojedzie do sygnalizacji, lecz sygnalizacja wskazuje na światło czerowne, kierowca zatrzymuje się i oczekuje na światło zielone,
+		\end{itemize}
+
+	
+	\section{Podsumowanie}
+
+		Uruchamiając symulację zaimplementowaną w sposób przedstawiony powyżej, zauważamy, że nawet tak prosty model ruchu samochodów, jest w stanie z pewnym przybliżeniem odwzorować zachowanie kierowców podczas przejazdu przez skrzyżowanie. Pozwala również dostosowywać działanie świateł, na podstawie obserwowania zagęszczenia ruchu na poszczególnych ulicach i badać skutki, do jakich te zmiany doprowadzają. Mimo, że na drodze nie dochodzi do łamania przepisów przez kierowców, wszystkie pojazdy są reprezentowane poprzez punkty, nie uwzględniając ich długości, nie uwzględnione zostały również umiejętności i poziom odwagi kierowców. Jednak wszystkie te czynniki mogą zostać w przyszłości zaimplementowane i dzieki temu model może okazać się jeszcze bardziej odpowiadający rzeczywistemu zachowaniu na drodze. 
+		
+
+	\end{multicols}
+
+\end{document}
