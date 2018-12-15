@@ -79,6 +79,9 @@ public class Car implements Comparable<Car> {
             this.nextstreet = null;
             this.currentPosition = 0;
             this.street.getCars().set(this.currentPosition, this);
+            this.circle.setCenterX(this.street.getStart().getX());
+            this.circle.setCenterY(this.street.getStart().getY());
+
         }
 //        System.out.println( "Y= " + y + " Z= " + z + "   POSITION: " + this.currentPosition);
     }
