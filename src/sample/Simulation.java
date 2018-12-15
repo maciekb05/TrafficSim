@@ -6,7 +6,8 @@ public class Simulation extends Thread {
     @Override
     public void run() {
         while(true) {
-            Model.getInstance().getCars().forEach(Car::updateDistanceFromNextCar);
+            Model.getInstance().getCars().forEach(Car::chooseNextStreet);
+            Model.getInstance().getCars().forEach(Car::updateDistanceAndSpeedFromNextCar);
             Model.getInstance().getCars().forEach(Car::setTheSpeedDependingOnTheSpeedAndDistanceOfTheNextCar);
             Model.getInstance().getCars().forEach(Car::drive);
             Model.getInstance().getCars().forEach(Car::updateActualPosition);

@@ -61,6 +61,8 @@ public class Street {
         this.cars.add(car);
     }
 
+    public boolean getLight() {return greenLight;}
+
     public void toggleLight() {
         greenLight = !greenLight;
     }

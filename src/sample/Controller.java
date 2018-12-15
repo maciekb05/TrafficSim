@@ -142,6 +142,28 @@ public class Controller {
 
 
 
+        AO.setStraight(O);
+        AT.setStraight(T);
+        BN.setStraight(N);
+        CI.setStraight(I);
+
+        FE.setStraight(E);
+        FT.setStraight(T);
+        GS.setStraight(S);
+        HN.setStraight(N);
+
+        KJ.setStraight(J);
+        KE.setStraight(E);
+        LD.setStraight(D);
+        MS.setStraight(S);
+
+        PO.setStraight(O);
+        PJ.setStraight(J);
+        QI.setStraight(I);
+        RD.setStraight(D);
+
+
+
         Model.getInstance().getStreets().addAll(Arrays.asList(
                 A,
                 B,

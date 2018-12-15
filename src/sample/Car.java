@@ -2,7 +2,10 @@ package sample;
 
 import javafx.scene.shape.Circle;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.StringTokenizer;
 
 public class Car implements Comparable<Car> {
 
@@ -15,15 +18,12 @@ public class Car implements Comparable<Car> {
     private int distanceFromNextCar;
     private int nextCarSpeed;
     private Street street;
+    private Street nextstreet = null;
 
     void drive() {
-
-
-//        System.out.println("Car: poz= "+ this.currentPosition + " speed= "+ this.currentSpeed + " NextCar dis=" + this.distanceFromNextCar + " speed= " + this.nextCarSpeed);
-
+        //System.out.println("Car: poz= "+ this.currentPosition + " speed= "+ this.currentSpeed + " NextCar dis=" + this.distanceFromNextCar + " speed= " + this.nextCarSpeed);
         circle.setCenterX(circle.getCenterX() + currentSpeed * street.getDirection().getX() * 0.2);
         circle.setCenterY(circle.getCenterY() + currentSpeed * street.getDirection().getY() * 0.2);
-
     }
 
     void setTheSpeedDependingOnTheSpeedAndDistanceOfTheNextCar() {
@@ -35,16 +35,33 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    void updateDistanceFromNextCar() {
-        this.distanceFromNextCar = street.getNumberOfPositions() - 1 - this.currentPosition;
-        this.nextCarSpeed = 0;
+    void updateDistanceAndSpeedFromNextCar() {
         for (int i=this.currentPosition + 1; i<street.getNumberOfPositions();i++){
             if (street.getCars().get(i) != null){
-                this.distanceFromNextCar = i - this.currentPosition -1;
+                this.distanceFromNextCar = i - this.currentPosition - 1;
                 this.nextCarSpeed = street.getCars().get(i).getCurrentSpeed();
+                break;
+            } else if (street.getNumberOfPositions() - 1 == i){
+                this.distanceFromNextCar = i - this.currentPosition - 1;
+                this.nextCarSpeed = 0;
                 break;
             }
         }
+
+        if (street.getLight() && this.nextstreet != null) {
+            for (int i=0; i<nextstreet.getNumberOfPositions();i++){
+                if (nextstreet.getCars().get(i) != null){
+                    this.distanceFromNextCar += i;
+                    this.nextCarSpeed = nextstreet.getCars().get(i).getCurrentSpeed();
+                    break;
+                } else if (nextstreet.getNumberOfPositions() - 1 == i){
+                    this.distanceFromNextCar += i;
+                    this.nextCarSpeed = 0;
+                    break;
+                }
+            }
+        }
+
     }
 
     void updateActualPosition(){
@@ -52,13 +69,32 @@ public class Car implements Comparable<Car> {
         int y =(int) (circle.getCenterY() - street.getStart().getY());
         int z =(int) Math.sqrt(Math.pow(x,2) + Math.pow(y,2))/10;
 
-        if (z < street.getNumberOfPositions() && currentPosition < street.getNumberOfPositions()){
+        if (z < street.getNumberOfPositions() && this.currentPosition < street.getNumberOfPositions()){
             street.getCars().set(currentPosition, null);
             street.getCars().set(z,this);
             this.currentPosition = z;
+        } else if (z == street.getNumberOfPositions()){
+            this.street.getCars().set(this.currentPosition,null);
+            this.street = this.nextstreet;
+            this.nextstreet = null;
+            this.currentPosition = 0;
+            this.street.getCars().set(this.currentPosition, this);
         }
-//        System.out.println("Y= " + y + " X= " + x + " Z= " + z + " Street.numberOfPositions= " + street.getNumberOfPositions());
 //        System.out.println( "Y= " + y + " Z= " + z + "   POSITION: " + this.currentPosition);
+    }
+
+    void chooseNextStreet() {
+        if (nextstreet == null){
+            List<Street> st = new ArrayList<>();
+            if(street.getLeft() != null) st.add(street.getLeft());
+            if(street.getStraight() != null) st.add(street.getStraight());
+            if(street.getRight() != null) st.add(street.getRight());
+
+            if (st.size() > 0){
+                Random rand = new Random();
+                this.nextstreet = st.get(rand.nextInt(st.size()));
+            }
+        }
     }
 
     public Street getStreet() {
