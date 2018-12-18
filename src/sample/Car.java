@@ -76,8 +76,6 @@ public class Car implements Comparable<Car> {
         } else if (z == street.getNumberOfPositions()){
             this.street.getCars().set(this.currentPosition,null);
             this.street = this.nextstreet;
-            circle.setCenterX(this.street.getStart().getX());
-            circle.setCenterY(this.street.getStart().getY());
             this.nextstreet = null;
             this.currentPosition = 0;
             this.street.getCars().set(this.currentPosition, this);

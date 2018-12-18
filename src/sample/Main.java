@@ -22,10 +22,10 @@ public class Main extends Application {
         Model.getInstance().getCars().forEach(car -> root.getChildren().add(car.getCircle()));
         primaryStage.setScene(new Scene(root, 700, 700));
         primaryStage.show();
-        Simulation sim = new Simulation();
-        sim.start();
         SimulateLights simLights = new SimulateLights();
         simLights.start();
+        Simulation sim = new Simulation();
+        sim.start();
     }
 
 

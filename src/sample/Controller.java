@@ -131,7 +131,7 @@ public class Controller {
         H.setLeft(HN);
 
         K.setStraight(KJ);
-        K.setStraight(KE);
+        K.setRight(KE);
         L.setStraight(LD);
         M.setLeft(MS);
 
