@@ -92,10 +92,26 @@ public class Car implements Comparable<Car> {
             if(street.getStraight() != null) st.add(street.getStraight());
             if(street.getRight() != null) st.add(street.getRight());
 
-            if (st.size() > 0){
-                Random rand = new Random();
-                this.nextstreet = st.get(rand.nextInt(st.size()));
+            if (st.size() == 0){
+                st.add(Model.getInstance().getStreets().get(0));
+                st.add(Model.getInstance().getStreets().get(1));
+                st.add(Model.getInstance().getStreets().get(2));
+
+                st.add(Model.getInstance().getStreets().get(5));
+                st.add(Model.getInstance().getStreets().get(6));
+                st.add(Model.getInstance().getStreets().get(7));
+
+                st.add(Model.getInstance().getStreets().get(10));
+                st.add(Model.getInstance().getStreets().get(11));
+                st.add(Model.getInstance().getStreets().get(12));
+
+                st.add(Model.getInstance().getStreets().get(15));
+                st.add(Model.getInstance().getStreets().get(16));
+                st.add(Model.getInstance().getStreets().get(17));
             }
+
+            Random rand = new Random();
+            this.nextstreet = st.get(rand.nextInt(st.size()));
         }
     }
 
