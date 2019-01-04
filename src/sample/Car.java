@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static java.lang.Thread.sleep;
+
 public class Car implements Comparable<Car> {
 
     private int id;
@@ -35,7 +37,7 @@ public class Car implements Comparable<Car> {
     }
 
     void updateDistanceAndSpeedFromNextCar() {
-        for (int i=this.currentPosition + 1; i<street.getNumberOfPositions();i++){
+        for (int i = this.currentPosition + 1; i < street.getNumberOfPositions(); i++){
             if (street.getCars().get(i) != null){
                 this.distanceFromNextCar = i - this.currentPosition - 1;
                 this.nextCarSpeed = street.getCars().get(i).getCurrentSpeed();
@@ -48,7 +50,7 @@ public class Car implements Comparable<Car> {
         }
 
         if (street.isGreen() && this.nextstreet != null) {
-            for (int i=0; i<nextstreet.getNumberOfPositions();i++){
+            for (int i = 0; i < nextstreet.getNumberOfPositions(); i++){
                 if (nextstreet.getCars().get(i) != null){
                     this.distanceFromNextCar += i;
                     this.nextCarSpeed = nextstreet.getCars().get(i).getCurrentSpeed();
