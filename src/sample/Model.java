@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.shape.Circle;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,11 @@ public class Model {
     private List<Car> cars = new ArrayList<>();
     private List<SpawningPlace> spawningPlaces = new ArrayList<>();
     private List<Point> points = new ArrayList<>();
+    private List<Light> lights = new ArrayList<>();
+
+    public List<Light> getLights() {
+        return lights;
+    }
 
     public List<Point> getPoints() {
         return points;

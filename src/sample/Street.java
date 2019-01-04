@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Street {
     private Line line;
     private Direction direction;
     private List<Car> cars;
-    private boolean greenLight = true;
+    private Color lightColor = Color.GREEN;
     private int numberOfPositions;
     private double lenght;
 
@@ -61,14 +62,18 @@ public class Street {
         this.cars.add(car);
     }
 
-    public boolean getLight() {return greenLight;}
+    public Color getLight() {return lightColor;}
 
-    public void toggleLight() {
-        greenLight = !greenLight;
+    public boolean isGreen() {
+        return this.lightColor == Color.GREEN;
+    }
+
+    public void changeLight(Color color) {
+        this.lightColor = color;
     }
 
     public String whatLight(){
-        return greenLight ? "zielone światło" : "czerwone światło";
+        return lightColor == Color.GREEN ? "zielone światło" : "nie zielone światło";
     }
 
     public Street getLeft() {

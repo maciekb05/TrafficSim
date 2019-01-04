@@ -5,7 +5,6 @@ import javafx.scene.shape.Circle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.StringTokenizer;
 
 public class Car implements Comparable<Car> {
 
@@ -48,7 +47,7 @@ public class Car implements Comparable<Car> {
             }
         }
 
-        if (street.getLight() && this.nextstreet != null) {
+        if (street.isGreen() && this.nextstreet != null) {
             for (int i=0; i<nextstreet.getNumberOfPositions();i++){
                 if (nextstreet.getCars().get(i) != null){
                     this.distanceFromNextCar += i;

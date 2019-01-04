@@ -1,72 +1,88 @@
 package sample;
 
 
-import java.util.List;
+import javafx.scene.paint.Color;
 
 public class SimulateLights extends Thread {
-    //lista głównych ulic
-    private List list = List.of(Model.getInstance().getStreets().get(0),
-                        Model.getInstance().getStreets().get(1),
-                        Model.getInstance().getStreets().get(10),
-                        Model.getInstance().getStreets().get(11),
-                        Model.getInstance().getStreets().get(2),
-                        Model.getInstance().getStreets().get(12),
-                        Model.getInstance().getStreets().get(5),
-                        Model.getInstance().getStreets().get(6),
-                        Model.getInstance().getStreets().get(15),
-                        Model.getInstance().getStreets().get(16),
-                        Model.getInstance().getStreets().get(7),
-                        Model.getInstance().getStreets().get(17));
 
     @Override
     public void run() {
         //główne ulice początkowo ustawiam na czerwone
-        Model.getInstance().getStreets().stream().filter(street -> list.contains(street)).forEach(Street::toggleLight);
+        this.setLightForVerticalLeft(Color.RED);
+        this.setLightForVerticalRightStraight(Color.RED);
+        this.setLightForHorizontalLeft(Color.RED);
+        this.setLightForHorizontalRightStraight(Color.RED);
+
         while(true) {
-            System.out.println("Next tick");
-            //na wprost i w prawo mają zielone
-            Model.getInstance().getStreets().get(0).toggleLight();
-            Model.getInstance().getStreets().get(1).toggleLight();
-            Model.getInstance().getStreets().get(10).toggleLight();
-            Model.getInstance().getStreets().get(11).toggleLight();
-            Model.getInstance().getStreets().forEach(str -> System.out.println("Ulica nr." + Model.getInstance().getStreets().indexOf(str) + " ma " + str.whatLight()));
+
             try {
-                sleep(11000);
-                //na wprost i w prawo mają czerwone
-                Model.getInstance().getStreets().get(0).toggleLight();
-                Model.getInstance().getStreets().get(1).toggleLight();
-                Model.getInstance().getStreets().get(10).toggleLight();
-                Model.getInstance().getStreets().get(11).toggleLight();
-                sleep(11000);
-                //w lewo mają zielone
-                Model.getInstance().getStreets().get(2).toggleLight();
-                Model.getInstance().getStreets().get(12).toggleLight();
-                sleep(11000);
-                //w lewo mają czerwone
-                Model.getInstance().getStreets().get(2).toggleLight();
-                Model.getInstance().getStreets().get(12).toggleLight();
-                sleep(11000);
-                //2-na wprost i w prawo mają zielone
-                Model.getInstance().getStreets().get(5).toggleLight();
-                Model.getInstance().getStreets().get(6).toggleLight();
-                Model.getInstance().getStreets().get(15).toggleLight();
-                Model.getInstance().getStreets().get(16).toggleLight();
-                sleep(11000);
-                //2-na wprost i w prawo mają czerwone
-                Model.getInstance().getStreets().get(5).toggleLight();
-                Model.getInstance().getStreets().get(6).toggleLight();
-                Model.getInstance().getStreets().get(15).toggleLight();
-                Model.getInstance().getStreets().get(16).toggleLight();
-                sleep(11000);
-                //2-w lewo mają zielone
-                Model.getInstance().getStreets().get(7).toggleLight();
-                Model.getInstance().getStreets().get(17).toggleLight();
-                //2-w lewo mają czerwone
-                Model.getInstance().getStreets().get(7).toggleLight();
-                Model.getInstance().getStreets().get(17).toggleLight();
+                this.setLightForVerticalRightStraight(Color.ORANGE);
+                sleep(3000);
+                this.setLightForVerticalRightStraight(Color.GREEN);
+                sleep(8000);
+                this.setLightForVerticalRightStraight(Color.ORANGE);
+                sleep(3000);
+                this.setLightForVerticalRightStraight(Color.RED);
+
+                sleep(3000);
+                this.setLightForVerticalLeft(Color.ORANGE);
+                sleep(3000);
+                this.setLightForVerticalLeft(Color.GREEN);
+                sleep(8000);
+                this.setLightForVerticalLeft(Color.ORANGE);
+                sleep(3000);
+                this.setLightForVerticalLeft(Color.RED);
+
+                sleep(3000);
+                this.setLightForHorizontalRightStraight(Color.ORANGE);
+                sleep(3000);
+                this.setLightForHorizontalRightStraight(Color.GREEN);
+                sleep(8000);
+                this.setLightForHorizontalRightStraight(Color.ORANGE);
+                sleep(3000);
+                this.setLightForHorizontalRightStraight(Color.RED);
+
+                sleep(3000);
+                this.setLightForHorizontalLeft(Color.ORANGE);
+                sleep(3000);
+                this.setLightForHorizontalLeft(Color.GREEN);
+                sleep(8000);
+                this.setLightForHorizontalLeft(Color.ORANGE);
+                sleep(3000);
+                this.setLightForHorizontalLeft(Color.RED);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void changeLight(Integer streetNr, Integer lightNr, Color color) {
+        Model.getInstance().getStreets().get(streetNr).changeLight(color);
+        Model.getInstance().getLights().get(lightNr).changeColor(color);
+    }
+
+    private void setLightForVerticalRightStraight(Color color) {
+        this.changeLight(0,0, color);
+        this.changeLight(1,1, color);
+        this.changeLight(10,6, color);
+        this.changeLight(11,7, color);
+    }
+
+    private void setLightForVerticalLeft(Color color) {
+        this.changeLight(2,2, color);
+        this.changeLight(12,8, color);
+    }
+
+    private void setLightForHorizontalRightStraight(Color color) {
+        this.changeLight(5,3, color);
+        this.changeLight(6,4, color);
+        this.changeLight(15,9, color);
+        this.changeLight(16,10, color);
+    }
+
+    private void setLightForHorizontalLeft(Color color) {
+        this.changeLight(7,5, color);
+        this.changeLight(17,11, color);
     }
 }

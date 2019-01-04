@@ -180,6 +180,56 @@ public class Controller {
         Model.getInstance().addSpawningPlace(new SpawningPlace(Q1, Q, 20));
         Model.getInstance().addSpawningPlace(new SpawningPlace(R1, R, 10));
 
+        Light lightA = new Light();
+        lightA.setCenterX(A2.getX());
+        lightA.setCenterY(A2.getY());
+
+        Light lightB = new Light();
+        lightB.setCenterX(B2.getX());
+        lightB.setCenterY(B2.getY());
+
+        Light lightC = new Light();
+        lightC.setCenterX(C2.getX());
+        lightC.setCenterY(C2.getY());
+
+        Light lightF = new Light();
+        lightF.setCenterX(F2.getX());
+        lightF.setCenterY(F2.getY());
+
+        Light lightG = new Light();
+        lightG.setCenterX(G2.getX());
+        lightG.setCenterY(G2.getY());
+
+        Light lightH = new Light();
+        lightH.setCenterX(H2.getX());
+        lightH.setCenterY(H2.getY());
+
+        Light lightM = new Light();
+        lightM.setCenterX(M2.getX());
+        lightM.setCenterY(M2.getY());
+
+        Light lightL = new Light();
+        lightL.setCenterX(L2.getX());
+        lightL.setCenterY(L2.getY());
+
+        Light lightK = new Light();
+        lightK.setCenterX(K2.getX());
+        lightK.setCenterY(K2.getY());
+
+        Light lightP = new Light();
+        lightP.setCenterX(P2.getX());
+        lightP.setCenterY(P2.getY());
+
+        Light lightQ = new Light();
+        lightQ.setCenterX(Q2.getX());
+        lightQ.setCenterY(Q2.getY());
+
+        Light lightR = new Light();
+        lightR.setCenterX(R2.getX());
+        lightR.setCenterY(R2.getY());
+
+        Model.getInstance().getLights().addAll(Arrays.asList(lightA,lightB,lightC,lightF,lightG,lightH,lightK,lightL,lightM,lightP,lightQ,lightR));
+
     }
 
     public Pane getRoot() {

@@ -20,6 +20,8 @@ public class Main extends Application {
         Model.getInstance().getStreets().forEach(st -> root.getChildren().add(st.getLine()));
         Model.getInstance().getSpawningPlaces().forEach(sp -> sp.spawnCars(15));
         Model.getInstance().getCars().forEach(car -> root.getChildren().add(car.getCircle()));
+        Model.getInstance().getLights().forEach(light -> root.getChildren().add(light));
+
         primaryStage.setScene(new Scene(root, 700, 700));
         primaryStage.show();
         SimulateLights simLights = new SimulateLights();
