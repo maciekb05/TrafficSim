@@ -27,6 +27,12 @@ public class Car implements Comparable<Car> {
         circle.setCenterY(circle.getCenterY() + currentSpeed * street.getDirection().getY() * 0.2);
     }
 
+    void setTheSpeedDependingOnTheSpeedAndDistanceOfTheNextCar2() {
+        if (this.nextCarSpeed + this.distanceFromNextCar < this.currentSpeed){
+            setCurrentSpeed(this.currentSpeed - 1);
+        }
+    }
+
     void setTheSpeedDependingOnTheSpeedAndDistanceOfTheNextCar() {
         if (this.nextCarSpeed + this.distanceFromNextCar > this.currentSpeed) {
             setCurrentSpeed(this.currentSpeed + 1);
@@ -63,6 +69,16 @@ public class Car implements Comparable<Car> {
             }
         }
 
+    }
+
+    void decreaseSpeedRandomly(){
+        Random random = new Random();
+        int rand = random.nextInt(3);
+        int rand2 = random.nextInt(100);
+
+        if (this.currentSpeed > rand && rand2 < 20) {
+            this.currentSpeed = currentSpeed - rand;
+        }
     }
 
     void updateActualPosition(){
