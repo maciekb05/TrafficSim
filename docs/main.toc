@@ -1,0 +1,27 @@
+\babel@toc {polish}{}
+\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{3}
+\contentsline {section}{\numberline {2}Automaty kom\IeC {\'o}rkowe}{3}
+\contentsline {subsection}{\numberline {2.1}Cechy}{3}
+\contentsline {subsection}{\numberline {2.2}S\IeC {\k a}siedztwo kom\IeC {\'o}rek}{4}
+\contentsline {subsection}{\numberline {2.3}Warunki brzegowe}{4}
+\contentsline {section}{\numberline {3}Symulacyjne modele ruchu}{6}
+\contentsline {subsection}{\numberline {3.1}Makrosymulacje}{6}
+\contentsline {subsection}{\numberline {3.2}Mikrosymulacje}{7}
+\contentsline {section}{\numberline {4}Model ruchu bazuj\IeC {\k a}cy na automatach kom\IeC {\'o}rkowych}{8}
+\contentsline {subsection}{\numberline {4.1}Model podstawowy \IeC {\textendash } model ChopardaLuthego-Queloza}{8}
+\contentsline {subsection}{\numberline {4.2}Model Nagela-Schreckenberga}{8}
+\contentsline {section}{\numberline {5}Planowanie i optymalizacja tras}{9}
+\contentsline {section}{\numberline {6}Sygnalizacja \IeC {\'s}wietlna}{10}
+\contentsline {section}{\numberline {7}Skrzy\IeC {\.z}owanie}{10}
+\contentsline {subsection}{\numberline {7.1}Regu\IeC {\l }y ruchu na skrzy\IeC {\.z}owaniu}{10}
+\contentsline {subsubsection}{\numberline {7.1.1}Pr\IeC {\k e}dko\IeC {\'s}\IeC {\'c} ruchu pojazd\IeC {\'o}w}{11}
+\contentsline {subsubsection}{\numberline {7.1.2}Bezpieczna pr\IeC {\k e}dko\IeC {\'s}\IeC {\'c} ruchu pojazd\IeC {\'o}w}{11}
+\contentsline {subsubsection}{\numberline {7.1.3}Przejazd przez skrzy\IeC {\.z}owanie}{11}
+\contentsline {subsubsection}{\numberline {7.1.4}Wjazd na skrzy\IeC {\.z}owanie}{12}
+\contentsline {subsubsection}{\numberline {7.1.5}Wp\IeC {\l }yw pieszych na ruch pojazd\IeC {\'o}w}{12}
+\contentsline {section}{\numberline {8}Implementacja programu symuluj\IeC {\k a}cego}{12}
+\contentsline {subsection}{\numberline {8.1}Wyb\IeC {\'o}r j\IeC {\k e}zyka programowania}{12}
+\contentsline {subsection}{\numberline {8.2}Diagram klas UML}{14}
+\contentsline {section}{\numberline {9}Wyniki symulacji}{15}
+\contentsline {section}{\numberline {10}Podsumowanie i future works}{16}
+\contentsline {section}{\numberline {11}Za\IeC {\l }\IeC {\k a}czniki}{18}

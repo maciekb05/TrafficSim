@@ -26,6 +26,9 @@
 
 	\stronatytulowa{}
 
+	\tableofcontents
+	\newpage
+
 		\section{Wstęp}
 
 		Rozwój sektora transportu spowodował znaczny wzrost ilości pojazdów poruszających się po ulicach miast. Wiąże się to z wzmożonym ruchem, utrudniającym sprawne przemieszczanie się. Rozbudowa sieci dróg jest jednym z rozwiązań tego problemu, lecz istnieją też inne sposoby na usprawnienie ruchu ulicznego, takie jak inteligentne sygnalizacje świetlne, skrzyżowania bezkolizyjne, systemy badające ruch w czasie rzeczywistym i sterujące nim w zależności od potrzeb.
@@ -105,6 +108,7 @@
 			\end{itemize}
 
 			\subsection{Warunki brzegowe}
+			\label{sec:warunkiBrzegowe}
 
 			W formalnej definicji automatów komórkowych wymaga się żeby siatka komórek była nieskończona we wszystkich wymiarach. Dla rozważań złożoności jest to uzasadnione i konieczne, ale oczywiście niemożliwe jest zasymulowanie naprawdę nieskończonej siatki programowo. Dlatego musimy ustalić pewne warunki brzegowe. Innym powodem zastosowania tych warunków może być fakt, że problem który chcemy zasymulować ma pewne naturalne granice. Istnieją trzy rodzaje warunków brzegowych:
 
@@ -149,17 +153,23 @@
 
 
 
-		W ogólności automat komórkowy to matematyczny model dyskretny, dynamicznych procesów zachodzących w czasie. Rozpatrywana przestrzeń w naszej aplikacji będzie listą pozycji na których może znajdować się pojazd na drodze. Stan komórki będzie zmieniał się w dyskretnych chwilach czasu, podczas gdy samochody będą się poruszać. Ruch pojazdu zależał będzie od prędkości maksymalnej, jaką można poruszać się na drodze, od odległości od najbliższego sąsiada poruszającego się tym samym pasem ruchu oraz od poprzedniego stanu w jakim znajdował się rozpatrywany samochód. Warunkiem brzegowym naszej przestrzeni będzie dojechanie do sygnalizacji świetlnej lub końca drogi, w takiej sytuacji kierowca oczekuje na zmianę sygnalizacji, lub wybiera ulicę którą chce podrózować dalej.
+		W ogólności automat komórkowy to matematyczny model dyskretny, dynamicznych procesów zachodzących w czasie. Rozpatrywana przestrzeń w naszej aplikacji będzie listą pozycji na których może znajdować się pojazd na drodze. Stan komórki będzie zmieniał się w dyskretnych chwilach czasu, podczas gdy samochody będą się poruszać. Ruch pojazdu zależał będzie od prędkości maksymalnej, jaką można poruszać się na drodze, od odległości od najbliższego sąsiada poruszającego się tym samym pasem ruchu oraz od poprzedniego stanu w jakim znajdował się rozpatrywany samochód. Warunkiem brzegowym naszej przestrzeni będzie dojechanie do sygnalizacji świetlnej lub końca drogi, w takiej sytuacji kierowca oczekuje na zmianę sygnalizacji, lub wybiera ulicę, którą chce podrózować dalej.
 
-		Automaty komórkowe pozwalają łączyć wielkie liczby komponentów, a także poziomów organizacyjnych w model umożliwiający bardzo szybką symulację zachowań systemu złożonego. Modele ruchu, które są oparte na automatach komórkowych to systemy dynamiczne, gdzie droga, czas oraz stany systemu stanowią wielkości dyskretne. Ewolucja modelu określana jest za pomocą reguł uaktualniania, które działają lokalnie (w sąsiedztwie danej komórki). W metodzie modelowania ruchu drogowego, bazującej na automatach komórkowych, droga została podzielona na komórki o stałej długości, natomiast pojazdy reprezentowane są przez punkty, które posiadają niezbędny zestaw parametrów. Co pewien stały krok czasowy każdy pojazd przemieszcza się zgodnie z regułami rządzącymi jego zachowaniem. Automaty komórkowe ze względu na swoją prostotę stanowią popularne narzędzie mikroskopowego modelowania ruchu drogowego. Modele wykorzystujące automaty komórkowe posiadają dużą wydajność obliczeniową. Ponad to, oferują możliwość odwzorowana i symulowania rzeczywistych zjawisk ruchu drogowego z zadowalającą dokładnością. Pozwalają również na realistyczne odwzorowanie środowiska ruchu miejskiego. Co więcej, umożliwiają one prognozę parametrów, które stanowią podstawę optymalizacji adaptacyjnego sterowania ruchem.
-
+		Automaty komórkowe pozwalają łączyć wielkie liczby komponentów, a także poziomów organizacyjnych w model umożliwiający bardzo szybką symulację zachowań systemu złożonego. Modele ruchu, które są oparte na automatach komórkowych to systemy dynamiczne, gdzie droga, czas oraz stany systemu stanowią wielkości dyskretne. Ewolucja modelu określana jest za pomocą reguł uaktualniania, które działają lokalnie (w sąsiedztwie danej komórki). W metodzie modelowania ruchu drogowego, bazującej na automatach komórkowych, droga została podzielona na komórki o stałej długości, natomiast pojazdy reprezentowane są przez punkty, które posiadają niezbędny zestaw parametrów. Co pewien stały krok czasowy każdy pojazd przemieszcza się zgodnie z regułami rządzącymi jego zachowaniem. Automaty komórkowe ze względu na swoją prostotę stanowią popularne narzędzie mikroskopowego modelowania ruchu drogowego. Modele wykorzystujące automaty komórkowe posiadają dużą wydajność obliczeniową. Ponad to, oferują możliwość odwzorowania i symulowania rzeczywistych zjawisk ruchu drogowego z zadowalającą dokładnością. Pozwalają również na realistyczne odwzorowanie środowiska ruchu miejskiego. Co więcej, umożliwiają one prognozę parametrów, które stanowią podstawę optymalizacji adaptacyjnego sterowania ruchem.
 
 		\section{Symulacyjne modele ruchu}
 
 		Bezpieczeństwo ruchu drogowego determinowane jest cechami infrastruktury drogowej oraz warunkami ruchowymi występującymi na sieci drogowej. Źle zaprojektowany układ sieci drogowej daje użytkownikom poważne trudności i przyczynia się do obniżenia bezpieczeństwa ruchu drogowego. Stosowane obecnie metody analiz ruchu drogowego, bazujące na matematycznych modelach makro i mikrosymulacji ruchu drogowego, umożliwiają racjonalne kształtowanie przebudowy i rozwoju układu drogowego, dostarczają niezbędne dane potrzebne do oceny poziomu warunków i bezpieczeństwa ruchu.
 
+		Zapis zachodzcych w ruchu drogowym procesów pomiędzy pojazdami można ogólnie przedstawić w formie implikacji: $ akcja \rightarrow reakcja $ w określonym czasie obserwacji t:
+
+		\begin{equation}
+			Reakcja(t)=czulosc*bodziec(t-T)
+		\end{equation}
+		gdzie: T - czas reakcji na bodziec \\
+
 		W dzisiejszych czasach rozbudowujące się sieci drogowe, które są uwarunkowane rosnącym zapotrzebowaniem na przestrzeń transportową, stawiają przed inżynierami ruchu ogromne wyzwania. Jednym z nich jest konieczność osiągnięcia jak najwyższego poziomu bezpieczeństwa ruchu drogowego. Sprostanie tym zadaniom wymaga stosowania w projektowaniu i zarządzaniu ruchem najnowocześniejszych narzędzi, którymi są symulacyjne modele ruchu drogowego.
-		W pracy skupiono się na mikrosymulacji wybranych skrzyżowań z sygnalizacją świetlną znajdujących się na terenie Krakowa. Teraz w kilku zdaniach przedstawione zastaną dwa modele symulacyjne ruchu drogowego – makro i mikrosymulacja.
+		W pracy skupiono się na mikrosymulacji wybranego skrzyżowania z sygnalizacją świetlną znajdującego się na terenie Krakowa. Teraz w kilku zdaniach przedstawione zastaną dwa modele symulacyjne ruchu drogowego -- makro i mikrosymulacja.
 
 		Pierwsze modele symulacyjne ruchu drogowego zostały zastosowane w połowie XX w. i były one modelami bardzo prostymi, posiadającymi szereg założeń upraszczających ich działanie. Symulacje te głównie dotyczyły przepływu ruchu na odcinkach międzywęzłowych sieci. Rozwój informatyki, a zwłaszcza numerycznych technik obliczeniowych sprzężonych z komputerami o coraz większej mocy obliczeniowej, przyczynił się do rozwoju nowocześniejszych procedur obliczeniowych stosowanych w inżynierii ruchu drogowego. W związku z tym rozwojem, w procedurach tych zaczęto uwzględniać coraz to większą grupę czynników wpływających na transport, a co za tym idzie na ruch drogowy. Procedury te mają za zadanie odwzorować skomplikowane zjawisko, jakim jest realizacja podróży w sposób możliwie dokładny i obrazujący stan istniejący. W myśl zasady „od ogółu do szczegółu” techniki symulacyjne wykształciły dwa poziomy analiz:
 
@@ -169,10 +179,11 @@
 		\end{itemize}
 
 
-		Makrosymulacje [Rys. 1] dotyczą głównie dużego obszaru sieci transportowej tj. kraju (krajowy model ruchu drogowego), województwa bądź grupy województw (regionalny model ruchu drogowego), albo całego miasta (miejski model ruchu drogowego). W modelach takich proces transportowy odzwierciedla się za pomocą czterech kroków ( model czterostopniowy):
+		\subsection{Makrosymulacje} 
+		Dotyczą one głównie dużego obszaru sieci transportowej tj. kraju (krajowy model ruchu drogowego), województwa bądź grupy województw (regionalny model ruchu drogowego), albo całego miasta (miejski model ruchu drogowego). W modelach takich proces transportowy odzwierciedla się za pomocą czterech kroków (model czterostopniowy):
 
 		\begin{itemize}
-			\item  Generowanie ruchu – tworzenie podróży wynikających z potrzeb człowieka (podróże indywidualne, transportem publicznym) oraz wynikające z potrzeb gospodarczych (np.: ruch pojazdów dostawczych). Opisane jest w ramach poszczególnych motywacji podróży: dom – praca, praca – dom itd.;
+			\item  Generowanie ruchu – tworzenie podróży wynikających z potrzeb człowieka (podróże indywidualne, transportem publicznym) oraz wynikające z potrzeb gospodarczych (np.: ruch pojazdów dostawczych). Istnieją różne motywacje do podróży: dom – praca, praca – dom itd.;
 			\item Rozkład przestrzenny ruchu - wybór celu podróży związanego z zagospodarowaniem przestrzennym analizowanego obszaru;
 			\item Wybór środka transportu do realizacji podróży (podział modalny) – opis kryteriów wyboru poszczególnych środków transportowych do realizacji podróży;
 			\item Rozkład podróży/potrzeb transportowych na sieć transportową – określenie tras podróży w ramach poszczególnych systemów transportowych, a w konsekwencji natężeń ruchu i potoków pasażerskich w środkach transportowych.
@@ -180,126 +191,273 @@
 
 		Pierwsze trzy kroki modelowania pozwalają na określenie potrzeb transportowych mieszkańców w ramach danego systemu transportowego. Dzięki temu możliwa jest odpowiedź na pytanie: „Ile osób w danym przedziale czasu zamierza podróżować i jakim środkiem transportowym?”. Czwarty krok to określenie tras realizacji podróży. Pomiędzy poszczególnymi krokami obliczeniowymi istnieje ścisła zależność, ponieważ forma realizacji podróży zależy od możliwości jej realizacji, a także stopnia obciążenia ruchem sieci.
 
+		\begin{figure}[H]
+			\centering
+			\captionsetup{justification=centering}
+			\includegraphics[width=0.8\textwidth]{Makrosymulacja.jpg}
+			\caption{Wynik makrosymulacji ruchu dla wybranego obszaru sieci drogowej centrum Bydgoszczy \\ źródło: \cite{makrosymulacja}}
+			\label{fig:Makrosymulacja}
+		\end{figure}
+	
 		Efektem stosowania makrosymulacji jest uzyskanie danych o natężeniach ruchu dla całej sieci transportowej analizowanego układu. Pozwala to na określenie zmian natężeń ruchu drogowego i potoków pasażerskich np. dla budowy nowego odcinka drogi, wprowadzenia nowego systemu opłat za przejazd.
 
-		Mikrosymulacje dotyczą wybranego, najczęściej ograniczonego do kilku skrzyżowań i odcinków międzywęzłowych, obszaru sieci transportowej. Mikrosymulacje mogą odnosić się do różnych obszarów transportu, m.in. ruchu drogowego dla którego prowadzone są symulacje ruchu pojazdów na poszczególnych pasach ruchu. Mikrosymulacja to uzupełnienie markosymulacji przez uszczegółowienie zjawiska ruchu drogowego. Symulacje te obrazują sposób przemieszczania się pojazdów wskazując możliwe miejsca potencjalnych utrudnień w ruchu drogowym np.: zatory, czy długości kolejek na poszczególnych pasach ruchu drogowego.
+		\subsection{Mikrosymulacje} 
+		Dotyczą one wybranego, najczęściej ograniczonego do kilku skrzyżowań i odcinków międzywęzłowych, obszaru sieci transportowej. Mikrosymulacje mogą odnosić się do różnych obszarów transportu, m.in. ruchu drogowego dla którego prowadzone są symulacje ruchu pojazdów na poszczególnych pasach ruchu. Mikrosymulacja to uzupełnienie markosymulacji przez uszczegółowienie zjawiska ruchu drogowego. Symulacje te obrazują sposób przemieszczania się pojazdów wskazując możliwe miejsca potencjalnych utrudnień w ruchu drogowym np.: zatory, czy długości kolejek na poszczególnych pasach ruchu drogowego.
 		Techniki mikrosymulacji to świetne narzędzie prezentacji sytuacji ruchowej, a także pokazania możliwych konsekwencji zmian w organizacji ruchu drogowego polegających min. na wprowadzeniu dodatkowego pasa ruchu dla relacji prawoskrętu, czy też zmiany długości cyklu sygnalizacji świetlnej. Efektem mikrosymulacji zazwyczaj jest film, który prezentuje przemieszczających się użytkowników infrastruktury transportowej. Dzięki tym filmom w łatwy sposób można przekonać potencjalnych inwestorów do danego typu rozwiązania transportowego.
 
+		\begin{figure}[H]
+			\centering
+			\captionsetup{justification=centering}
+			\includegraphics[width=0.8\textwidth]{Mikrosymulacja.jpg}
+			\caption{\textit{Wynik mikrosymulacji ruchu drogowego wybranych skrzyżowań w Krakowie}}
+			\label{fig:Mikrosymulacja}
+		\end{figure}
+	
+		\section{Model ruchu bazujący na automatach komórkowych}
+	
+		Pomysł wykorzystania automatów komórkowych w symulacji ruchu drogowego spotkał się z dużym zainteresowaniem świata nauki. Świadczą o tym powstałe modele, których liczba jest całkiem spora. Poniżej zostaną przedstawione przykładowe modele (źródło: \cite{czasopisnoLogistyka}).
+	
+		\subsection{Model podstawowy – model ChopardaLuthego-Queloza} 
+  
+		To elementarny automat komórkowy zdefiniowany przez Wolframa. Przestawia ruch pojazdów na drodze jednokierunkowej i jednopasmowej. Droga wyrażona jest za pomocą jednowymiarowej tablicy, w której każda z komórek może być zajęta przez pojazd lub wolna. Odpowiada to dwóm stanom: 1 lub 0. Wszystkie samochody poruszają się w jedna stronę (np. w prawo) maksymalnie o jedną pozycję pod warunkiem, że komórka docelowa jest wolna.
 
+		\subsection{Model Nagela-Schreckenberga}
 
-		\section{Model Nagela-Schreckenberga}
-
-		Model ten opisuje uproszczony model poruszania się samochodów. Jednopasmowa i jednokierunkowa droga zostaje podzielona na odcinki o długości przeciętnego samochodu w raz z wolnym miejscem z przodu i z tyłu. W każdej komórce w danym czasie może znajdować się tylko jeden samochód.
+		Model ten opisuje uproszczony model poruszania się samochodów. Jednopasmowa i jednokierunkowa droga zostaje podzielona na odcinki o długości przeciętnego samochodu wraz z wolnym miejscem z przodu i z tyłu. W każdej komórce w danym czasie może znajdować się tylko jeden samochód. Model ten posiada pochłaniające warunki brzegowe (patrz sekcja \ref{sec:warunkiBrzegowe})
 
 		Funkcja przejścia podzielona została na etapy:
 
 		\begin{itemize}
-			\item Przyspieszanie - wszystkie samochody zwiększają swoją prędkość, jeżeli do tej pory jechały z prędkością mniejszą niż maksymalna na danej ulicy,
-			\item Hamowanie - jeśli liczba komórek wolnych od samochodu do samochodu jadącego przed rozpatrywanym jest mniejsza niż prędkość samochodu, to kierowca samochodu musi dostosować prędkość, aby uniknąć kolizji,
-			\item Zdarzenia losowe - samochód zmniejsza prędkość z uwagi na nieprzewidziane zachowanie na drodze, z określonym prawdopodobieństwem,
-			\item Przesunięcie - wszystkie samochody przesuwają się o określony dystans, zgodnie z prędkością obliczoną w poprzednich krokach.
+			\item{\textbf{Przyspieszanie} - wszystkie samochody zwiększają swoją prędkość, jeżeli do tej pory jechały z prędkością mniejszą niż maksymalna na danej ulicy.}
+
+			\begin{equation}
+				v(t+1) \rightarrow min(v(t)+1,v_{max})
+			\end{equation}
+			gdzie: v(t) - prędkość aktualna
+
+			\item{\textbf{Hamowanie} - jeśli liczba komórek wolnych od samochodu do samochodu jadącego przed rozpatrywanym jest mniejsza niż prędkość samochodu, to kierowca samochodu musi dostosować prędkość, aby uniknąć kolizji.}
+
+			\begin{equation}
+				v(t+1) \rightarrow min(v(t)+1,g(t)-1)
+			\end{equation}
+			gdzie: g(t) - liczba pustych komórek między pojazdami
+
+			\item{\textbf{Zdarzenia losowe} - samochód zmniejsza prędkość z uwagi na nieprzewidziane zachowanie na drodze, z określonym prawdopodobieństwem.}
+
+			Prawdopodobieństwo $p$, że zajdzie $v(t+1) \rightarrow max(v(t)-1)>=1$.
+
+			\item{\textbf{Przesunięcie} - wszystkie samochody przesuwają się o określony dystans, zgodnie z prędkością obliczoną w poprzednich krokach (ruch, zmiana położenia w czasie).}
+
+			\begin{equation}
+				x(t+1)=x(t)+v(t)
+			\end{equation}
+
 		\end{itemize}
 
-		Te cztery czynności powtarza się wiele razy, tak długo, jak jest to wymagane do badania wszelkich korków, które mogą tworzyć. Model jest przykładem automatu komórkowego. Model dotyczy pojedynczego pasa, w którym samochody nie mogą się wzajemnie przekazywać - nie ma wyprzedzania.
+		Te cztery czynności powtarza się wiele razy, tak długo, jak jest to wymagane do badania wszelkich korków, które mogą tworzyć. Model jest przykładem automatu komórkowego. Model dotyczy pojedynczego pasa, w którym samochody nie mogą się wyprzedzać.
+
+		\begin{figure}[H]
+			\centering
+			\captionsetup{justification=centering}
+			\includegraphics[width=0.8\textwidth]{ruchModel}
+			\caption{Ruch w modelu Nagela-Schreckenberga na pasie ruchu w kolejnych chwilach czasowych \\ Opracowanie własne na podstawie: \cite{formalizacjaDudekWas}}
+			
+			\label{fig:N-Sch_1}
+		\end{figure}
 
 
 
-		\section{Planowanie i optymalizacja tras}
+	\section{Planowanie i optymalizacja tras}
 
-		Istnieje wiele sposobów na planowanie transportu min. rzędy, kolumny, tabele, wykresy. Skuteczność tych sposobów można ocenić w sposób analityczny i bez zamawiania kosztownych symulacji. Jednak przy coraz większym stopniu złożoności ruchu wyniki planowania oparte wyłącznie na skumulowanych wartościach są trudne do sprawdzenia, a co więcej są one trudne do zrozumienia. W takim przypadku rozwiązaniem pozwalającym na wyciągnięcie miarodajnych wniosków potrzebnych do podjęcia decyzji, jest graficzne przedstawienie organizacji ruchu drogowego. Mikrosymulacje:
+	Istnieje wiele sposobów na planowanie transportu min. rzędy, kolumny, tabele, wykresy. Skuteczność tych sposobów można ocenić w sposób analityczny i bez zamawiania kosztownych symulacji. Jednak przy coraz większym stopniu złożoności ruchu wyniki planowania oparte wyłącznie na skumulowanych wartościach są trudne do sprawdzenia, a co więcej są one trudne do zrozumienia. W takim przypadku rozwiązaniem pozwalającym na wyciągnięcie miarodajnych wniosków potrzebnych do podjęcia decyzji, jest graficzne przedstawienie organizacji ruchu drogowego. Mikrosymulacje:
 
-		\begin{itemize}
-			\item pozwalają na graficzne przedstawianie abstrakcyjnych danych, co ułatwia ich zrozumienie;
-			\item pomagają odwzorowywać procesy organizacji ruchu;
-			\item pomagają rozpoznawać potencjalnie słabe strony sieci (wraz z przyczynami);
-			\item pozwalają weryfikować podjęte działania pod kątem ich wpływu na ruch drogowy.
-		\end{itemize}
+	\begin{itemize}
+		\item pozwalają na graficzne przedstawianie abstrakcyjnych danych, co ułatwia ich zrozumienie;
+		\item pomagają odwzorowywać procesy organizacji ruchu;
+		\item pomagają rozpoznawać potencjalnie słabe strony sieci (wraz z przyczynami);
+		\item pozwalają weryfikować podjęte działania pod kątem ich wpływu na ruch drogowy.
+	\end{itemize}
 
-		Przy użyciu narzędzia do mikrosymulacji ruchu drogowego można tworzyć realistyczne wizualizacje, które ułatwią zrozumienie zachowań drogowych osobom bez technicznego przygotowania, zwłaszcza gdy w podejmowaniu decyzji udział biorą organy polityczne lub opinia publiczna. Przyszłe i jeszcze nie istniejące alternatywy staną się widoczne, a kompleksowe połączenia okażą się intuicyjne i zrozumiałe.
-		Największą zaletą mikrosymulacji jest dostępność szczegółów, które można wykorzystać do budowy wirtualnej rzeczywistości. Można tworzyć symulację interakcji kierowców i pieszych w całej sieci transportowej zgodnie ze stereotypowymi zasadami przemieszczania się. Dodatkowo wizualizacja wszystkich sygnalizatorów świetlnych pozwala zobaczyć, które światła świecą na zielono, a które na czerwono. Symulacja umożliwia wprowadzenie szczegółów na poziomie zbliżonym do rzeczywistego, tak aby utworzony model miał jak najlepszą rozdzielczość.
-
-
+	Przy użyciu narzędzia do mikrosymulacji ruchu drogowego można tworzyć realistyczne wizualizacje, które ułatwią zrozumienie zachowań drogowych osobom bez technicznego przygotowania, zwłaszcza gdy w podejmowaniu decyzji udział biorą organy polityczne lub opinia publiczna. Przyszłe i jeszcze nie istniejące alternatywy staną się widoczne, a kompleksowe połączenia okażą się intuicyjne i zrozumiałe.
+	Największą zaletą mikrosymulacji jest dostępność szczegółów, które można wykorzystać do budowy wirtualnej rzeczywistości. Można tworzyć symulację interakcji kierowców i pieszych w całej sieci transportowej zgodnie ze stereotypowymi zasadami przemieszczania się. Dodatkowo wizualizacja wszystkich sygnalizatorów świetlnych pozwala zobaczyć, które światła świecą na zielono, a które na czerwono. Symulacja umożliwia wprowadzenie szczegółów na poziomie zbliżonym do rzeczywistego, tak aby utworzony model miał jak najlepszą rozdzielczość.
 
 
-		\section{Sygnalizacja świetlna}
 
-		Dodatkiem do modelu Nagela-Schreckenberga może być model sygnalizacji świetlnej. Sygnalizacja jest systemem komunikującym kierowcom, możliwość kontynuowania jazdy, co wpływa na zwiększenie poziomu bezpieczeństwa.
+	\section{Sygnalizacja świetlna}
 
-		Aby zamodelować sygnalizację świetlną dodajemy kilka rozszeżeń do naszego modelu:
-		\begin{itemize}
-			\item samochód dojeżdzający do sygnalizacji świetlnej zmniejsza swoją prędkość,
-			\item jeśli kierowca dojedzie do sygnalizacji, a sygnalizacja wskazuje na światło zielone, kierowca kontynuuje jazdę,
-			\item jeśli kierowca dojedzie do sygnalizacji, lecz sygnalizacja wskazuje na światło czerowne, kierowca zatrzymuje się i oczekuje na światło zielone,
-		\end{itemize}
+	Dodatkiem do modelu Nagela-Schreckenberga może być model sygnalizacji świetlnej. Sygnalizacja jest systemem komunikującym kierowcom, możliwość kontynuowania jazdy, co wpływa na zwiększenie poziomu bezpieczeństwa.
 
-		\section{Skrzyżowanie}
-
-		\begin{itemize}
-			\item Drogi dwupasmowe i dwukierunkowe przecinają się pod kątem prostym.
-			\item Kolor świateł zmienia się na i-tym skrzyżowaniu co ti iteracji (jest to bliskie rzeczywistości rozwiązanie, ponieważ rzadko się zdarza aby sygnalizacja świetlna na dwóch różnych skrzyżowaniach, które sąsiadują ze sobą była zsynchronizowana).
-			\item Odległości między poszczególnymi skrzyżowaniami mogą być różne.
-			\item Komórka może być zajęta przez samochód, bądź wolna (zajęta komórka posiada wartość liczbową określającą prędkość pojazdu znajdującego się na dowolnym odcinku drogi, w danej chwili).
-			\item Funkcja przejścia składa się z 4 etapów: przyśpieszenie, hamowanie, zdarzenie losowe i przesunięcie.
-		\end{itemize}
-
-		Obserwacje wynikające z symulacji skrzyżowania pokazują, że przepustowość sygnalizacji świetlnej zależy głównie od maksymalnego przyspieszenia. Dla przepustowości mniejszej od liczby samochodów chcących przejechać przez skrzyżowanie kolejka pojazdów oczekujących na przejazd będzie ulegać stopniowemu wydłużeniu. Zator powstający w ten sposób może sięgać nawet poprzedniego skrzyżowania. Model uwzględnia także występujące w rzeczywistości zachowania, tzn. postawy kierowców, którzy wjeżdżają na skrzyżowanie mimo braku możliwości jego opuszczenia. Konsekwencją takiego zachowania jest blokada przejazdu dla innych użytkowników ruchu, co prowadzi do zmniejszenie przepustowości sygnalizacji świetlnej. Ponad to powstający w ten sposób zator posiad tendencje do rozprzestrzeniania się ze względu na to, że jest to system naczyń połączonych. W wyniku takiego zachowania jednostkowa sytuacja może prowadzić do paraliżu całego układu komunikacyjnego badanego obszaru.
-
-		\parskip=10pt
-		\textbf {Reguły ruchu na skrzyżowaniu}
-
-		Możliwość dostosowania modelu do potrzeb konkretnego rozwiązania wymaga użycia wielu parametrów konfiguracyjnych dla pasów ruchu i poszczególnych typów pojazdów. Organizacja ruchu na skrzyżowaniu wymaga zastosowania dodatkowych reguł ruchu pojazdów, uwzględniających zasady ruchu na nim. Bezpieczna prędkość wymaga zastosowania procedur umożliwiających jej określenie dla każdej sytuacji ruchowej.
-
-		\begin{itemize}
-			\item Prędkość ruchu pojazdów
-		\end{itemize}
-
-		Pojazdy mogą się poruszać z prędkością od 0 do 5 m/s. Mniejsze prędkości od dopuszczalnych prędkości ruchu dla poszczególnych typów pojazdów można uzyskano dzięki wprowadzeniu zdarzenia losowego tj. np. prawdopodobieństwa zahamowania wynikające z warunków pogodowych.
-
-		\begin{itemize}
-			\item 	Bezpieczna prędkość ruchu pojazdów
-		\end{itemize}
-
-		Każdy pojazd potrafi określić swoją bezpieczną prędkość, czyli zachować bezpieczny odstęp od poprzedniego pojazdu, zmniejszyć prędkość albo zatrzymać się w określonej komórce drogi. Funkcja określająca drogę hamowania zależy od bieżącej prędkości pojazdu i w przypadku wykorzystania idealnego opóźnienia hamowania dla b=1 m/s może mieć postać:
-
-		\begin{equation}
-			S_{b}(v)=\sum_{i=1}^{v-1} i[komórek]
-		\end{equation}
-
-		Chcąc uwzględnić stan nawierzchni czy też warunki pogodowe uniemożliwiające idealne hamowanie funkcję (1) należy uzupełnić o współczynniki korygujące drogę hamowania.
-		W przeciętnych warunkach ruchu czas reakcji kierowcy przyjmowany jest jako 1 s, ale możliwe jest jego zwiększenie w niekorzystnych warunkach ruchu.
-		Każdy pojazd potrafi utrzymywać bezpieczną odległość, zmniejszając ją w przypadku obecności pojazdu poprzedzającego, utrzymując ją oraz próbując przyspieszyć, gdy jego prędkość jest mniejsza od lokalnie dopuszczalnej.
-
-		\begin{itemize}
-			\item 	Przejazd przez skrzyżowanie
-		\end{itemize}
-
-		opis tu bd
-
-		\begin{itemize}
-			\item 	Wjazd na skrzyżowanie
-		\end{itemize}
-
-		opis tu bd
-
-		\begin{itemize}
-			\item 	Wpływ pieszych na ruch pojazdów
-		\end{itemize}
-
-		opis tu bd
+	Aby zamodelować sygnalizację świetlną dodajemy kilka rozszeżeń do naszego modelu:
+	\begin{itemize}
+		\item samochód dojeżdzający do sygnalizacji świetlnej zmniejsza swoją prędkość,
+		\item jeśli kierowca dojedzie do sygnalizacji, a sygnalizacja wskazuje na światło zielone, kierowca kontynuuje jazdę,
+		\item jeśli kierowca dojedzie do sygnalizacji, lecz sygnalizacja wskazuje na światło czerowne, kierowca zatrzymuje się i oczekuje na światło zielone,
+	\end{itemize}
 
 
-		\section{Podsumowanie}
+	\section{Skrzyżowanie}
 
-		Uruchamiając symulację zaimplementowaną w sposób przedstawiony powyżej zauważamy, że nawet tak prosty model ruchu samochodów jest w stanie, z pewnym przybliżeniem, odwzorować zachowanie kierowców podczas przejazdu przez skrzyżowanie. Symulacja pozwala również dostosowywać działanie świateł na podstawie obserwowania zagęszczenia ruchu na poszczególnych ulicach i badać skutki, do jakich te zmiany doprowadzają. Mimo, że na drodze nie dochodzi do łamania przepisów przez kierowców wszystkie pojazdy są reprezentowane poprzez punkty, nie uwzględniając ich długości, nie uwzględnione zostały również umiejętności i poziom odwagi kierowców. Jednak wszystkie te czynniki mogą zostać w przyszłości zaimplementowane i dzięki temu model może okazać się jeszcze bardziej odpowiadający rzeczywistemu zachowaniu na drodze.
+	\begin{itemize}
+		\item Drogi dwupasmowe i dwukierunkowe przecinają się pod kątem prostym.
+		\item Kolor świateł zmienia się na i-tym skrzyżowaniu co $t_{i}$ iteracji (jest to bliskie rzeczywistości rozwiązanie, ponieważ rzadko się zdarza, aby sygnalizacja świetlna na dwóch różnych skrzyżowaniach, które sąsiadują ze sobą była zsynchronizowana).
+		\item Odległości między poszczególnymi skrzyżowaniami mogą być różne.
+		\item Komórka może być zajęta przez samochód, bądź wolna (zajęta komórka posiada wartość liczbową określającą prędkość pojazdu znajdującego się na dowolnym odcinku drogi, w danej chwili).
+		\item Funkcja przejścia składa się z 4 etapów: przyśpieszenie, hamowanie, zdarzenie losowe i przesunięcie.
+	\end{itemize}
 
-		Opracowane środowisko do symulacji ruchu drogowego posiada m.in możliwości wykorzystania:
-		\begin{itemize}
-			\item dostępu z poziomu przeglądarki www;
-			\item rozbudowanego  edytora map, dzięki któremu można modelować;
-			\item dowolnego obszaru objętego badaniem np. konfliktowych skrzyżowań dróg;
-			\item procesu symulacji, który umożliwia np. zróżnicowanie samochodów ze względu na różne wartości maksymalnych przyspieszeń czy prędkości, generowanie zdarzeń losowych, czy modelowanie specyficznych sytuacji na drodze;
-			\item statystyki oraz wizualizacja danych wygenerowanych przez symulator min. tj.: natężenie ruchu, średnia prędkość, wartości prędkości i przyspieszeń pojazdów na danym odcinku drogi, czy też przepustowość danego obszaru.
-		\end{itemize}
+	Obserwacje wynikające z symulacji skrzyżowania pokazują, że przepustowość sygnalizacji świetlnej zależy głównie od maksymalnego przyspieszenia. Dla przepustowości mniejszej od liczby samochodów chcących przejechać przez skrzyżowanie kolejka pojazdów oczekujących na przejazd będzie ulegać stopniowemu wydłużeniu. Zator powstający w ten sposób może sięgać nawet poprzedniego skrzyżowania. Model uwzględnia także występujące w rzeczywistości zachowania, tzn. postawy kierowców, którzy wjeżdżają na skrzyżowanie mimo braku możliwości jego opuszczenia. Konsekwencją takiego zachowania jest blokada przejazdu dla innych użytkowników ruchu, co prowadzi do zmniejszenia przepustowości sygnalizacji świetlnej. Ponadto powstający w ten sposób zator posiada tendencje do rozprzestrzeniania się ze względu na to, że jest to system naczyń połączonych. W wyniku takiego zachowania jednostkowa sytuacja może prowadzić do paraliżu całego układu komunikacyjnego badanego obszaru.
+
+	\subsection{Reguły ruchu na skrzyżowaniu}
+
+	Możliwość dostosowania modelu do potrzeb konkretnego rozwiązania wymaga użycia wielu parametrów konfiguracyjnych dla pasów ruchu i poszczególnych typów pojazdów. Organizacja ruchu na skrzyżowaniu wymaga zastosowania dodatkowych reguł ruchu pojazdów, uwzględniających zasady ruchu na nim. Bezpieczna prędkość wymaga zastosowania procedur umożliwiających jej określenie dla każdej sytuacji ruchowej.
+
+	\subsubsection{Prędkość ruchu pojazdów}
+
+	Pojazdy mogą się poruszać z prędkością od 0 do 5 m/s. Mniejsze prędkości od dopuszczalnych prędkości ruchu dla poszczególnych typów pojazdów można uzyskać dzięki wprowadzeniu zdarzenia losowego tj. np.: prawdopodobieństwa zahamowania wynikającego z panujących warunków pogodowych.
+
+	\subsubsection{Bezpieczna prędkość ruchu pojazdów}
+
+	Każdy pojazd potrafi określić swoją bezpieczną prędkość, czyli zachować bezpieczny odstęp od poprzedniego pojazdu, zmniejszyć prędkość albo zatrzymać się w określonej komórce drogi. Funkcja określająca drogę hamowania zależy od bieżącej prędkości pojazdu i w przypadku wykorzystania idealnego opóźnienia hamowania dla $b=1 m/s$ może mieć postać:
+
+	\begin{equation}
+		\label{fun:hamowania}
+		S_{b}(v)= \sum _{i=1}^{v-1} i[komorek]
+	\end{equation}
+
+	Chcąc uwzględnić stan nawierzchni czy też warunki pogodowe uniemożliwiające idealne hamowanie, funkcję (\ref{fun:hamowania}) należy uzupełnić o współczynniki korygujące drogę hamowania.
+	W przeciętnych warunkach ruchu czas reakcji kierowcy przyjmowany jest jako 1 s, ale możliwe jest jego zwiększenie w niekorzystnych warunkach ruchu.
+	Każdy pojazd potrafi utrzymywać bezpieczną odległość, zmniejszając ją w przypadku obecności pojazdu poprzedzającego, utrzymując ją oraz próbując przyspieszyć, gdy jego prędkość jest mniejsza od lokalnie dopuszczalnej.
+
+	\subsubsection{Przejazd przez skrzyżowanie}
+
+	Prędkości przejazdu pojazdów przez skrzyżowanie z prędkością większą od 1 m/s [Rysunek \ref{fig:S1}] dopuszcza są w przypadku przejazdu przez skrzyżowanie na wprost drogą nadrzędną oraz podczas sygnału zielonego.
+
+	\begin{figure}[H]
+		\centering
+		\captionsetup{justification=centering}
+		\includegraphics[width=0.8\textwidth]{S1.jpg}
+		\caption{Przypadki przejazdu pojazdów przez skrzyżowanie z prędkością większą niż 1 m/s \\ źródło: \cite{artykulyNaPlycie}}
+		\label{fig:S1}
+	\end{figure}
+
+	[Rysunek \ref{fig:S2}] przedstawia tory ruchu po skrzyżowaniu dla pojazdów różnych relacji. Rozpatrując przypadek załamanego przebiegu drogi z pierwszeństwem przejazdu, skręt w lewo zostaje zrealizowany bez przekroczenia osi jezdni nadrzędnej.
+
+	\begin{figure}[H]
+		\centering
+		\captionsetup{justification=centering}
+		\includegraphics[width=0.8\textwidth]{S2.jpg}
+		\caption{Tory przejazdu przez skrzyżowanie \\ źródło: \cite{artykulyNaPlycie}}
+		\label{fig:S2}
+	\end{figure}
+
+	W celu urzeczywistnienia przejazdu przez tak małe skrzyżowanie pojazdów ciężkich, dodatkowo należy sprawdzić czy wszystkie części ciężkiego pojazdu opuściły obszar skrzyżowania właściwego, ponieważ dopiero wtedy zwiększenie prędkości takiego pojazdu do wartości większych niż 1 m/s jest możliwe. Działanie takiego algorytmu przedstawia poniższy rysunek [Rysunek \ref{fig:S3}].
+
+	\begin{figure}[H]
+		\centering
+		\captionsetup{justification=centering}
+		\includegraphics[width=0.8\textwidth]{S3.jpg}
+		\caption{Przejazd pojazdu ciężkiego przez skrzyżowanie \\ źródło: \cite{artykulyNaPlycie}}
+		\label{fig:S3}
+	\end{figure}
+
+
+	\subsubsection{Wjazd na skrzyżowanie}
+
+	Zbliżający się do skrzyżowania pojazd musi ustąpić pierwszeństwa przejazdu zgodnie z zasadami wynikającymi z rodzaju skrzyżowania i organizacji ruchu na nim. W przypadku organizacji ruchu i relacji, zbliżając się końca wlotu pojazd kontroluje swoją prędkość tak, aby w ostatniej komórce wlotu przed skrzyżowaniem wynosiła 1 m/s. Dzięki temu możliwe jest ewentualne zatrzymanie pojazdu przed skrzyżowaniem i ustąpienie pierwszeństwa przejazdu. Bezwzględne zatrzymanie pojazdu występuje jeżeli wlot jest podporządkowany znakiem ,,stop” lub jeżeli wyświetlany jest inny sygnał niż zielony (pojazd, który nie jest w stanie się zatrzymać przed skrzyżowaniem przejeżdża przez nie). Pojazd zmuszony do zatrzymania musi odczekać założoną ilość czasu zanim włączy się do ruchu.
+
+	Zbliżając się do skrzyżowania pojazd musi podjąć odpowiednie decyzje. Schemat postępowania zależy wtedy od organizacji ruchu, jednak główne kroki w takim przypadku są następujące:
+
+	\begin{enumerate}
+		\item sprawdzenie obecności pojazdów, które nie opuściły skrzyżowania,
+		\item sprawdzenie możliwości przejazdu przez skrzyżowanie i jego opuszczenia,
+		\item sprawdzenie pierwszeństwa przejazdu.
+	\end{enumerate}
+
+	\subsubsection{Wpływ pieszych na ruch pojazdów}
+
+	W modelu Nagela-Shreckenberga zakłada się respektowanie pierwszeństwa pieszych na przejściach zlokalizowanych na wlotach, wylotach i dodatkowych pasach ruchu. Każde wyznaczone przejście posiada dwa parametry: czas zablokowania przejścia, a także prawdopodobieństwo pojawienia się pieszego, czy też grupy pieszych.
+
+	\section{Implementacja programu symulującego}
+
+	\subsection{Wybór języka programowania}
+
+	Symulator ma za zadanie na wielu płaszczyznach wspierać możliwości rozszerzania. Obecnie za paradygmat programowania pozwalający na rozszerzenie funkcjonalności w uważa się paradygmat programowania obiektowego, dlatego pod uwagę przy wyborze języka programowania brane były języki związane z tym paradygmatem oraz znane przynajmniej w podstawowym stopniu członkom projektu. Pod uwagę wzięto: C++, Java, C\#.
+
+	Istotnym elementem z punktu widzenia każdej aplikacji jest możliwość jej wykorzystania na różnych platformach sprzętowo-systemowych. C++ i Java zdają się pokrywać zakresem dostępności (porównywalna ilości platform). Natomiast C\# wydaje się nie być dostępny na wielu platformach. Z tego powodu C\# został odrzucony i nie będzie rozpatrywany w kolejnych kategoriach doboru.
+
+	Kolejnym aspektem jest wydajność obliczeń. Nie jest ona kluczowym elementem dla aplikacji, ale czas obliczeń to kosz, dlatego minimalizacja czasu wydaje być istotnym elementem przy doborze języka programowania. W tej kategorii przewaga C++ nad Javą jest niezaprzeczalna. Z drugiej strony wydajność to nie główne kryterium doboru technologii, dlatego nie zdecydowano się na odrzucenie tego języka na tym etapie.
+
+	Błędy programistyczne to nieodłączny element pisania aplikacji. Języki różnego typu bronią się przed tymi błędami na różne sposoby. Za błąd w tych językach uważa się zachowania powszechnie uznawane za nielogiczne, np.: stawianie obiektów złych klas w nieokreślonych dla nich kontekstach. C++ posiada ręczne zarządzanie pamięcią, które jest uznawane za jeden z najbardziej błędogennych elementów tworzenia oprogramowania, dlatego w tej kategorii Java (sam obsługujący zarządzanie pamięcią nie obciążając tym zadaniem programisty) wydaje się być lepszy.
+
+	Biorąc pod uwagę powyższe kryteria oceny wybrano język \textbf{Java}. Kluczowe okazało się doświadczenie programistyczne autorów pracy. Wydajność obliczeniowa w dzisiejszych czasach nie jest wysokim kosztem, a dla naszego projektu nie jest kluczowa. Projekt ma na celu wykonanie mikrosymulacji, gdzie nie ma dużej ilości danych (jak w przypadku makrosymulacji). Dodatkowo język chroniący programistę przed własnymi błędami ma wg autorów sporą przewagę.
+
+	\subsection{Diagram klas UML}
+
+	\begin{figure}[H]
+		\centering
+		\captionsetup{justification=centering}
+		\includegraphics[width=0.6\textwidth]{uml}
+		\caption{Diagram klas projektu}
+		\label{fig:klasy}
+	\end{figure}
+
+	\begin{itemize}
+		\item Main - główna klasa uruchamiająca program
+		\item Simulation - klasa symulacji samochodów
+		\item SimulateLights - klasa symulacji świateł
+		\item Controller - Kontroler zarządza komunikacją między symulacjami, a rysowaniem na ekranie
+		\item Car - klasa samochodu, posiada Circle, żeby można było pokazać go na ekranie
+		\item Circle - klasa Koło służąca do rysowania pojazdów i kolorów świateł
+		\item Streer - klasa ulicy, ma kierunek, auta które po niej jadą, ulica ma punkt początkowy i końcowy, aby było łatwo ją narysować, na niektórych ulicach jest miejsce w którym mogą pojawiać się pojazdy
+		\item Direction - klasa kierunku ulicy
+		\item Point - Puknt służący do wyświetlania ulicy na ekranie,
+		\item Light - światło drogowe
+		\item Model - Dane o symulacji, na podstawie których symulowane jest zachowanie świateł i pojazdów
+		\item SpawningPlace - klasa miejsca w którym może pojawić się nowy samochód, posiada procentową szansę na pojawienie się tam samochodu
+	\end{itemize}
+
+
+	\section{Wyniki symulacji}
+
+	Opracowany w pracy model skrzyżowania obrazuje sumulację ruchu ulicznego samochodów w mieście - MIKROSYMULACJA. Uzyskane w pracy wyniki obrazuje animacja pokazująca jak wygląda ruch na skrzyżowaniu (Załącznik 3).
+
+	Dzięki symulacji możliwe jest uwidocznienie zjawiska blokowania się skrzyżowań. To zjawisko zostało rozwiązane poprzez zaprogramowanie sygnalizacji świetlnej, która w przypadku jak na rysunku poniżej, wymusza zatrzymanie pojazdu na czerwonym świetle.
+
+	\begin{figure}[H]
+		\centering
+		\captionsetup{justification=centering}
+		\includegraphics[width=0.7\textwidth]{symulacja}
+		\caption{Widok skrzyżowania z sygnalizacją świetlną}
+		\label{fig:Wyniki_sym_1}
+	\end{figure}
+
+	\section{Podsumowanie i future works}
+
+	Uruchamiając symulację zaimplementowaną w sposób przedstawiony powyżej zauważamy, że nawet tak prosty model ruchu samochodów jest w stanie, z pewnym przybliżeniem, odwzorować zachowanie kierowców podczas przejazdu przez skrzyżowanie. Symulacja pozwala również dostosowywać działanie świateł na podstawie obserwowania zagęszczenia ruchu na poszczególnych ulicach i badać skutki, do jakich te zmiany doprowadzają. Mimo, że na drodze nie dochodzi do łamania przepisów przez kierowców wszystkie pojazdy są reprezentowane poprzez punkty, nie uwzględniając ich długości, nie uwzględnione zostały również umiejętności i poziom odwagi kierowców. Jednak wszystkie te czynniki mogą zostać w przyszłości zaimplementowane i dzięki temu model może okazać się jeszcze bardziej odpowiadający rzeczywistemu zachowaniu na drodze.
+
+	Istnieje wiele możliwości rozbudowania opracowywanego środowiska do symulacji ruchu drogowego. W przyszłości może ono posiadać:
+	\begin{itemize}
+		\item innych użytkowników ruchu tj.: pieszych, rowerzystów, ciężkich aut, a także komunikacji zbiorowej (tramwaje, autobusy);
+		\item dostęp z poziomu przeglądarki www;
+		\item rozbudowany edytor map, dzięki któremu można modelować dowolny obszar objętego badaniem np. konfliktowych skrzyżowań dróg;
+		\item proces symulacji, który umożliwia np. zróżnicowanie samochodów ze względu na różne wartości maksymalnych przyspieszeń czy prędkości, generowanie zdarzeń losowych, czy modelowanie specyficznych sytuacji na drodze;
+		\item statystyki oraz wizualizacja danych wygenerowanych przez symulator, tj.: natężenie ruchu, średnia prędkość, wartości prędkości i przyspieszeń pojazdów na danym odcinku drogi, czy też przepustowość danego obszaru;
+		\item możliwości ustawiania parametrów symulacji przez użytkownika;
+		\item możliwości zmiany parametrów, które są możliwe do zmiany w czasie symulacji (np.: suwak zmiany szybkości symulacji) przez użytkownika;
+		\item dokładne odwzorowanie proporcji ulic, samochodów i innych elementów;
+		\item udoskonaloną szatę graficzną;
+		\item możliwość zaprojektowania makrosymulacji.
+	\end{itemize}
+
+	\newpage
+	\section{Załączniki}
+
+	\begin{itemize}
+		\item Załącznik 1 \textit{Wersja wykonywalna}
+		\item Załącznik 2 \textit{Kody źródłowe wraz z komentarzami}
+		\item Załącznik 3 \textit{Animacja ruchu ulicznego na skrzyżowaniu z sygnalizacją świetlną}
+	\end{itemize}
+	\newpage
 
 	\bibliography{mybib}{} 
 	\bibliographystyle{plain}
