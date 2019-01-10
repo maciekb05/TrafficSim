@@ -1,0 +1,32 @@
+\begin{thebibliography}{1}
+
+\bibitem{formalizacjaDudekWas}
+Jarosław~Wąs Ewa Dudek-Dyduch.
+\newblock Formalizacja automatów komórkowych w zagadnieniach symulacji
+  dynamiki pieszych, 2005.
+
+\bibitem{kulakowskiWasSzpyrka}
+Marcin~Szpyrka Konrad~Kułakowski, Jarosław~Wąs.
+\newblock Dynamiczny model świata w sterowaniu autonomicznym robotem mobilnym.
+
+\bibitem{warunkiBrzegowe}
+Jörg~R. Weimar.
+\newblock Modeling with cellular automata, 2000.
+
+\bibitem{wolframMoore}
+Eric~W. Weisstein.
+\newblock Moore neighborhood.
+\newblock \url{http://mathworld.wolfram.com/MooreNeighborhood.html}.
+\newblock [Online; dostęp : 10.01.19r.].
+
+\bibitem{wolframVonNeumann}
+Eric~W. Weisstein.
+\newblock von neumann neighborhood.
+\newblock \url{http://mathworld.wolfram.com/vonNeumannNeighborhood.html}.
+\newblock [Online; dostęp : 10.01.19r.].
+
+\bibitem{automatyZygierewicz}
+Jarosław Żygierewicz.
+\newblock Automaty komórkowe.
+
+\end{thebibliography}

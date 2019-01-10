@@ -7,6 +7,9 @@
 \usepackage{anyfontsize}
 \usepackage{graphicx}
 \usepackage{multicol}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{caption}
 
 \setlength\columnsep{1cm}
 
@@ -23,15 +26,13 @@
 
 	\stronatytulowa{}
 
-	\begin{multicols}{2}
-
 		\section{Wstęp}
 
 		Rozwój sektora transportu spowodował znaczny wzrost ilości pojazdów poruszających się po ulicach miast. Wiąże się to z wzmożonym ruchem, utrudniającym sprawne przemieszczanie się. Rozbudowa sieci dróg jest jednym z rozwiązań tego problemu, lecz istnieją też inne sposoby na usprawnienie ruchu ulicznego, takie jak inteligentne sygnalizacje świetlne, skrzyżowania bezkolizyjne, systemy badające ruch w czasie rzeczywistym i sterujące nim w zależności od potrzeb.
 
-		Symulacje ruchu drogowego pozwalają sprawdzić jaki wpływ na układ drogowy będzie miał np. ruch generowany z projektowanego biurowca albo nowo budowanej drogi. Poza możliwościami jakie daje mikrosymulaja ruchu w 2d przeprowadzane symulacje mogą mieć  jeszcze bardziej przystępną formę. Wyniki symulacji mogą być przedstawione w postaci np. długości kolejek czy starty czasu, które są czytelne przede wszystkim dla inżynierów ruchu. Dodatkowo symulacje ruchu drogowego umożliwiają przedstawienie docelowej sytuacji w trzech wymiarach. Pozwala to na zobrazowanie inwestorowi czy zarządcy ruchu jak wygląda rozkład ruchu na okolicznych ulicach przy projektowanym obiekcie handlowym czy powstającym właśnie biurowcu, a obrazowane w ten sposób wyniki są dostępne dla osób, które na co dzień nie mają do czynienia z inżynierią ruchu.
+		Symulacje ruchu drogowego pozwalają sprawdzić jaki wpływ na układ drogowy będzie miał np. ruch generowany z projektowanego biurowca albo nowo budowanej drogi. Poza możliwościami jakie daje mikrosymulaja ruchu w 2d przeprowadzane symulacje mogą mieć  jeszcze bardziej przystępną formę. Wyniki symulacji mogą być przedstawione w postaci np. długości kolejek czy straty czasu, które są czytelne przede wszystkim dla inżynierów ruchu. Dodatkowo symulacje ruchu drogowego umożliwiają przedstawienie docelowej sytuacji w trzech wymiarach. Pozwala to na zobrazowanie inwestorowi czy zarządcy ruchu jak wygląda rozkład ruchu na okolicznych ulicach przy projektowanym obiekcie handlowym czy powstającym właśnie biurowcu, a obrazowane w ten sposób wyniki są dostępne dla osób, które na co dzień nie mają do czynienia z inżynierią ruchu.
 
-		Symulacje ruchu pozwalają zobrazować przyszłą sytuację ruchową i przedstawić ja w przystępnej formie. Co więcej stanowią element, który na prezentacjach ma za zadanie przyciągać wzrok i uwagę widza, ponieważ pojazdy na symulacji poruszają się jak prawdziwe pojazdy, a decyzje poszczególnych pojazdów odzwierciedlają zachowania kierowców na drodze.
+		Symulacje ruchu pozwalają zobrazować przyszłą sytuację ruchową i przedstawić ją w przystępnej formie. Co więcej stanowią element, który na prezentacjach ma za zadanie przyciągać wzrok i uwagę widza, ponieważ pojazdy na symulacji poruszają się jak prawdziwe pojazdy, a decyzje poszczególnych pojazdów odzwierciedlają zachowania kierowców na drodze.
 
 		Symulacje umożliwiają symulowanie jednocześnie ruchu samochodów, pieszych, rowerzystów, a także tramwajów. Dzięki temu możliwe jest umieszczenie, w jednej symulacji, wszystkich uczestników ruchu oraz przedstawienie wzajemnej interakcji między nimi.
 
@@ -39,14 +40,14 @@
 
 		\section{Automaty komórkowe}
 
-		Automat komórkowy wykorzystywany jest w różnorakich symulacjach. Automaty komórkowe definiowane są najczęsciej na dwa sposoby:
+		Automat komórkowy wykorzystywany jest w różnorakich symulacjach. Automaty komórkowe definiowane są najczęsciej na dwa sposoby (patrz \cite{formalizacjaDudekWas}):
 
 		\begin{itemize}
 			\item Definicja Ferbera
 			\begin{quote}
 				Automaty komórkowe są dyskretnym, dynamicznym systemem, którego zachowanie jest całkowicie określone w warunkach lokalnych relacji
 			\end{quote}
-			\item Definicja Weimera
+			\item Definicja klasyczna \cite{kulakowskiWasSzpyrka}
 			\begin{quote}
 				Automat komórkowy to czwórka $(L,N,S,f)$, gdzie
 				\begin{itemize}
@@ -57,6 +58,96 @@
 				\end{itemize}
 			\end{quote}
 		\end{itemize}
+
+			\subsection{Cechy}
+
+			Według \cite{automatyZygierewicz} automaty rozumiemy jako:
+			\begin{itemize}
+				\item regularną siatkę jedno lub wielo wymiarową
+				\item każdy węzeł siatki jest w jednym z $ K $ dyskretnych stanów
+				\item w dyskretnych momentach uaktualniane są stany węzłów
+				\item każdy stan w chwili $ t+1 $ jest zależny od stanu sąsiadów w chwili $ t $
+				\item można przyjmować różne warunki brzegowe (tj. periodyczne)
+			\end{itemize}
+
+			\subsection{Sąsiedztwo komórek}
+
+			Wyróżniamy wiele różnych rodzajów sąsiedztw, z czego najpopularniejszymi są: 
+			\begin{itemize}
+				\item Sąsiedztwo von Neumana \cite{wolframVonNeumann}
+				
+				Sąsiedztwo w kształcie diamentu, może być definiowane jako otoczenia danej komórki $(x_0,y_0)$. Sąsiedztwo Neumanna zakresu $ r $ jest definiowane jako:
+				$$ N_{(x_0,y_0)}^{v} = \left\{ (x,y) : \left| x - x_0 \right| + \left| y - y_0 \right| \leq r \right\} $$
+				Sąsiedztwo von Neumann'a dla $ r = 1 $ przedstawione zostało na rysunku \ref{fig:neumann}.
+
+				\begin{figure}[H]
+					\centering
+					\captionsetup{justification=centering}
+					  \includegraphics[width=0.3\textwidth]{neumann}
+					\caption{Sąsiedztwo Neumann'a. \\ Opracowanie własne na podstawie: Wikipedia - Automat komórkowy}
+					\label{fig:neumann}
+				\end{figure}
+
+				\item Sąsiedztwo Moore'a \cite{wolframMoore}
+				
+				Sąsiedztwo w kształcie kwadratu, może być definiowane jako otoczenia danej komórki $(x_0,y_0)$. Sąsiedztwo Moore'a zkresu $ r $ jest definiowane jako:
+				$$ N_{(x_0,y_0)}^{M} = \left\{ (x,y) : \left| x - x_0 \right| \leq r, \left| y - y_0 \right| \leq r \right\} $$
+				Sąsiedztwo Moore'a dla $ r = 1 $ przedstawione zostało na rysunku \ref{fig:moore}.
+
+				\begin{figure}[H]
+					\centering
+					\captionsetup{justification=centering}
+					  \includegraphics[width=0.3\textwidth]{moore}
+					\caption{Sąsiedztwo Moore'a. \\ Opracowanie własne na podstawie: Wikipedia - Automat komórkowy}
+					\label{fig:moore}
+				\end{figure}
+
+			\end{itemize}
+
+			\subsection{Warunki brzegowe}
+
+			W formalnej definicji automatów komórkowych wymaga się żeby siatka komórek była nieskończona we wszystkich wymiarach. Dla rozważań złożoności jest to uzasadnione i konieczne, ale oczywiście niemożliwe jest zasymulowanie naprawdę nieskończonej siatki programowo. Dlatego musimy ustalić pewne warunki brzegowe. Innym powodem zastosowania tych warunków może być fakt, że problem który chcemy zasymulować ma pewne naturalne granice. Istnieją trzy rodzaje warunków brzegowych:
+
+			\begin{itemize}
+				\item periodyczne
+				
+				Uzyskuje się je wydłużając siatkę poprzez zapętlanie. Okresowe warunki brzegowe są najbliższe symulowaniu nieskończonej siatki i dlatego są często używane. Dwuwymiarowa wersja periodycznych warunków brzegowych, gdzie połączone są krawędzie: górna i dolna, lewa i prawa, prowadzi do topologii torusa.
+
+				\begin{figure}[H]
+					\centering
+					\captionsetup{justification=centering}
+					  \includegraphics[width=0.4\textwidth]{periodic}
+					\caption{Warunek brzegowy periodyczny, jednowymiarowa siatka. \\ Opracowanie własne na postawie: \cite{warunkiBrzegowe}}
+					\label{fig:periodic}
+				\end{figure}
+
+				\item zamknięte odbijające
+				
+				Uzyskuje się przez odbicie siatki na granicy. Ten typ warunku brzegowego najlepiej pasuje do warunków, w których symulowany system ma również granice i gdzie wartość zmiennych fizycznych nie jest stała. Często te warunki brzegowe można łączyć w różnych celach z innymi (różne warunki na różnych krawędziach).
+
+				\begin{figure}[H]
+					\centering
+					\captionsetup{justification=centering}
+					  \includegraphics[width=0.4\textwidth]{zamknieteOdb}
+					\caption{Warunek brzegowy zamknięty odbijający, jednowymiarowa siatka. \\ Opracowanie własne na postawie: \cite{warunkiBrzegowe}}
+					\label{fig:closedOdb}
+				\end{figure}
+
+				\item zamknięte pochłaniające
+				
+				Wartości są uzyskiwane poprostu przez przepisanie ustalonej wartości komórek na granicy. Ta wartość musi zostać określona na podstawie aplikacji. Ten warunek brzegowy odpowiada warunkom brzegowym Dirichlet'a dla równań różniczkowych cząstkowych.
+
+				\begin{figure}[H]
+					\centering
+					\captionsetup{justification=centering}
+					  \includegraphics[width=0.4\textwidth]{zamknietePoch}
+					\caption{Warunek brzegowy zamknięty odbijający, jednowymiarowa siatka. \\ Opracowanie własne na postawie: \cite{warunkiBrzegowe}}
+					\label{fig:closedPoch}
+				\end{figure}
+
+			\end{itemize}
+
+
 
 		W ogólności automat komórkowy to matematyczny model dyskretny, dynamicznych procesów zachodzących w czasie. Rozpatrywana przestrzeń w naszej aplikacji będzie listą pozycji na których może znajdować się pojazd na drodze. Stan komórki będzie zmieniał się w dyskretnych chwilach czasu, podczas gdy samochody będą się poruszać. Ruch pojazdu zależał będzie od prędkości maksymalnej, jaką można poruszać się na drodze, od odległości od najbliższego sąsiada poruszającego się tym samym pasem ruchu oraz od poprzedniego stanu w jakim znajdował się rozpatrywany samochód. Warunkiem brzegowym naszej przestrzeni będzie dojechanie do sygnalizacji świetlnej lub końca drogi, w takiej sytuacji kierowca oczekuje na zmianę sygnalizacji, lub wybiera ulicę którą chce podrózować dalej.
 
@@ -210,7 +301,7 @@
 			\item statystyki oraz wizualizacja danych wygenerowanych przez symulator min. tj.: natężenie ruchu, średnia prędkość, wartości prędkości i przyspieszeń pojazdów na danym odcinku drogi, czy też przepustowość danego obszaru.
 		\end{itemize}
 
-
-	\end{multicols}
+	\bibliography{mybib}{} 
+	\bibliographystyle{plain}
 
 \end{document}
