@@ -419,7 +419,7 @@
 
 	\section{Wyniki symulacji}
 
-	Opracowany w pracy model skrzyżowania obrazuje sumulację ruchu ulicznego samochodów w mieście - MIKROSYMULACJA. Uzyskane w pracy wyniki obrazuje animacja pokazująca jak wygląda ruch na skrzyżowaniu (Załącznik 3).
+	Opracowany w pracy model skrzyżowania obrazuje symulację ruchu ulicznego samochodów w mieście - MIKROSYMULACJA. Uzyskane w pracy wyniki obrazuje animacja pokazująca jak wygląda ruch na skrzyżowaniu (Załącznik 3).
 
 	Dzięki symulacji możliwe jest uwidocznienie zjawiska blokowania się skrzyżowań. To zjawisko zostało rozwiązane poprzez zaprogramowanie sygnalizacji świetlnej, która w przypadku jak na rysunku poniżej, wymusza zatrzymanie pojazdu na czerwonym świetle.
 
@@ -431,6 +431,25 @@
 		\label{fig:Wyniki_sym_1}
 	\end{figure}
 
+	\subsection{Statystyki}
+	
+	W aplikacji dołączone zostało wypisywanie statystyk, sumujemy ile dotychczasowo samochodów przejechało przez daną ulicę.
+	
+	W ramach zbierania danych uruchomiliśmy ją kilkakrotnie i wyliczyliśmy średnią arytmetyczną z uzyskanych danych.
+	Średnio na 10 minut działania symulacji otrzymaliśmy następujące wyniki:
+	\begin{itemize}
+		\item Nowohucka w kierunku Ronda Dywizjonu 308 -- 284
+		\item Stoczniowców -- 368
+		\item Nowohucka w kierunku ulicy Powstańców Wielkopolskich -- 324
+		\item Saska -- 228
+	\end{itemize}
+	
+	Dla czasu symulacji (około 10 minut) otrzymaliśmy wyniki około 300 samochodów co odpowiada w rzeczywistości 6 minutom zbierania danych. 
+	
+	Najbardziej zatłoczoną ulicą jest ulica Stoczniowców. Analizy ruchu drogowego wykazały, że natężenie ruchu na skrajnym prawym pasie ruchu jest zdecydowanie większe niż na pozostałych pasach. Podjęto więc decyzję o zmianie organizacji ruchu w tym miejscu. Pas ten będzie służył tylko do skrętu w prawo. Nowa organizacja ruchu zmieni dotychczasową relację na wprost, będzie możliwa ona jedynie z pasa środkowego, z wyłączeniem dotychczasowej możliwości z pasa prawego.
+	
+	Aby odwzorować ten fakt w naszej symulacji zwiększyliśmy chęć kierowców jazdy tą ulicą.
+	
 	\section{Podsumowanie i future works}
 
 	Uruchamiając symulację zaimplementowaną w sposób przedstawiony powyżej zauważamy, że nawet tak prosty model ruchu samochodów jest w stanie, z pewnym przybliżeniem, odwzorować zachowanie kierowców podczas przejazdu przez skrzyżowanie. Symulacja pozwala również dostosowywać działanie świateł na podstawie obserwowania zagęszczenia ruchu na poszczególnych ulicach i badać skutki, do jakich te zmiany doprowadzają. Mimo, że na drodze nie dochodzi do łamania przepisów przez kierowców wszystkie pojazdy są reprezentowane poprzez punkty, nie uwzględniając ich długości, nie uwzględnione zostały również umiejętności i poziom odwagi kierowców. Jednak wszystkie te czynniki mogą zostać w przyszłości zaimplementowane i dzięki temu model może okazać się jeszcze bardziej odpowiadający rzeczywistemu zachowaniu na drodze.
