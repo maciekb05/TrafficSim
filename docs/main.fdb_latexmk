@@ -1,17 +1,18 @@
 # Fdb version 3
-["bibtex main"] 1547148073 "main.aux" "main.bbl" "main" 1547148074
+["bibtex main"] 1547148073 "main.aux" "main.bbl" "main" 1547148403
   "c:/texlive/2018/texmf-dist/bibtex/bst/base/plain.bst" 1541605754 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
   "main.aux" 1547148074 6831 1b6847037b0905614d71d8b88a643b80 ""
   "mybib.bib" 1547144467 3469 24e1c1ca9f3fb33ff1a31aa4f9664e36 ""
   (generated)
-  "main.bbl"
   "main.blg"
-["pdflatex"] 1547148073 "c:/Users/macie/IdeaProjects/dokumentacjaNewTraficSim/main.tex" "main.pdf" "main" 1547148074
+  "main.bbl"
+["pdflatex"] 1547148073 "c:/Users/macie/IdeaProjects/NewTrafficSim/docs/main.tex" "main.pdf" "main" 1547148403
   "Makrosymulacja.jpg" 1547137638 40384 4cbdb4cb95c69778e94bb3f66f10bf05 ""
   "Mikrosymulacja.jpg" 1547137638 43689 6dbf10993cc503c859d60f68400adb00 ""
   "S1.jpg" 1547137638 12748 e9aca794be8e0822c5a70c4b84ea370a ""
   "S2.jpg" 1547137638 13889 918c70e201fce871edb310e0203fcd36 ""
   "S3.jpg" 1547137638 16496 8fbe102301cb164e9a98c83ba1689248 ""
+  "c:/Users/macie/IdeaProjects/NewTrafficSim/docs/main.tex" 1547148071 37808 cced115bc5acff47ee3678327467e23e ""
   "c:/Users/macie/IdeaProjects/dokumentacjaNewTraficSim/main.tex" 1547148071 37808 cced115bc5acff47ee3678327467e23e ""
   "c:/texlive/2018/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1541605967 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1541606442 3332 103109f5612ad95229751940c61aada0 ""
@@ -125,7 +126,7 @@
   "zamknieteOdb.png" 1547136609 1303 67df6c53176fe076f72cd3b86c4bdc74 ""
   "zamknietePoch.png" 1547136679 1177 6ea6f373dbcc883dca72636f4647da59 ""
   (generated)
-  "main.aux"
   "main.log"
-  "main.pdf"
+  "main.aux"
   "main.toc"
+  "main.pdf"

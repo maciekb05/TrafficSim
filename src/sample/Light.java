@@ -3,6 +3,7 @@ package sample;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+//klasa swiatla jakie jest na danej sygnalizacji swietlnej
 public class Light extends Circle {
 
     public Light() {

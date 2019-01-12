@@ -6,33 +6,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static java.lang.Thread.sleep;
-
+//Klasa Samochodu
 public class Car implements Comparable<Car> {
-
+    //identyfikator samochodu
     private int id;
+    //laczna ilosc samochodow
     private static int numbersOfCars = 0;
 
+    //circle aby mozna bylo narysowac w panelu javaFX
     private Circle circle;
+    //bierzaca predkosc samochodu
     private Integer currentSpeed;
+    //bierzaca pozycja samochodu na ulicy
     private int currentPosition;
+    //odleglosc (w ilosci komorek) od kolejnego pojazdu
     private int distanceFromNextCar;
+    //szybkosc pojazdu poprzedajacego
     private int nextCarSpeed;
+    //ulica po ktorej jedzie samochod
     private Street street;
+    // kolejna ulica na ktora zdecyduje sie kierowca
     private Street nextstreet = null;
 
+    //metoda do zmiany pozycji samochodu na podstawie bierzacej predkosci
     void drive() {
         //System.out.println("Car: poz= "+ this.currentPosition + " speed= "+ this.currentSpeed + " NextCar dis=" + this.distanceFromNextCar + " speed= " + this.nextCarSpeed);
         circle.setCenterX(circle.getCenterX() + currentSpeed * street.getDirection().getX() * 0.2);
         circle.setCenterY(circle.getCenterY() + currentSpeed * street.getDirection().getY() * 0.2);
     }
 
+    //metoda ustawiajaca bierzaca predkosc na podstawie szybkosci i odleglosci od pojazdu poprzedajacego (tylko zwalnianie)
     void setTheSpeedDependingOnTheSpeedAndDistanceOfTheNextCar2() {
         if (this.nextCarSpeed + this.distanceFromNextCar < this.currentSpeed){
             setCurrentSpeed(this.currentSpeed - 1);
         }
     }
 
+    //metoda ustawiajaca bierzaca predkosc na podstawie szybkosci i odleglosci od pojazdu poprzedajacego
     void setTheSpeedDependingOnTheSpeedAndDistanceOfTheNextCar() {
         if (this.nextCarSpeed + this.distanceFromNextCar > this.currentSpeed) {
             setCurrentSpeed(this.currentSpeed + 1);
@@ -42,6 +52,7 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    //uaktualnianie dystansu i predkosci od nastepnego samochodu i odleglosci od sygnalizacji swietlnej
     void updateDistanceAndSpeedFromNextCar() {
         for (int i = this.currentPosition + 1; i < street.getNumberOfPositions(); i++){
             if (street.getCars().get(i) != null){
@@ -71,6 +82,7 @@ public class Car implements Comparable<Car> {
 
     }
 
+    //sytuacja randomowa (20% szansy), zmniejszanie predkosci przez kierowce
     void decreaseSpeedRandomly(){
         Random random = new Random();
         int rand = random.nextInt(3);
@@ -81,6 +93,7 @@ public class Car implements Comparable<Car> {
         }
     }
 
+    //uaktualnianie aktualnej pozycji na panelu
     void updateActualPosition(){
         int x =(int) (circle.getCenterX() - street.getStart().getX());
         int y =(int) (circle.getCenterY() - street.getStart().getY());
@@ -100,9 +113,9 @@ public class Car implements Comparable<Car> {
             this.circle.setCenterY(this.street.getStart().getY());
 
         }
-//        System.out.println( "Y= " + y + " Z= " + z + "   POSITION: " + this.currentPosition);
     }
 
+    //wybor kolejnej ulicy przez kierowce
     void chooseNextStreet() {
         if (nextstreet == null){
             List<Street> st = new ArrayList<>();
@@ -115,15 +128,29 @@ public class Car implements Comparable<Car> {
                 st.add(Model.getInstance().getStreets().get(0));
                 st.add(Model.getInstance().getStreets().get(1));
                 st.add(Model.getInstance().getStreets().get(2));
+                st.add(Model.getInstance().getStreets().get(0));
+                st.add(Model.getInstance().getStreets().get(1));
+                st.add(Model.getInstance().getStreets().get(2));
 
                 st.add(Model.getInstance().getStreets().get(5));
                 st.add(Model.getInstance().getStreets().get(6));
                 st.add(Model.getInstance().getStreets().get(7));
+                st.add(Model.getInstance().getStreets().get(5));
+                st.add(Model.getInstance().getStreets().get(6));
+                st.add(Model.getInstance().getStreets().get(7));
+                st.add(Model.getInstance().getStreets().get(5));
+                st.add(Model.getInstance().getStreets().get(6));
 
                 st.add(Model.getInstance().getStreets().get(10));
                 st.add(Model.getInstance().getStreets().get(11));
                 st.add(Model.getInstance().getStreets().get(12));
+                st.add(Model.getInstance().getStreets().get(10));
+                st.add(Model.getInstance().getStreets().get(11));
+                st.add(Model.getInstance().getStreets().get(12));
 
+                st.add(Model.getInstance().getStreets().get(15));
+                st.add(Model.getInstance().getStreets().get(16));
+                st.add(Model.getInstance().getStreets().get(17));
                 st.add(Model.getInstance().getStreets().get(15));
                 st.add(Model.getInstance().getStreets().get(16));
                 st.add(Model.getInstance().getStreets().get(17));
@@ -134,10 +161,6 @@ public class Car implements Comparable<Car> {
             this.nextstreet.incrementCounter();
 
         }
-    }
-
-    public Street getStreet() {
-        return street;
     }
 
     void setStreet(Street street) {
@@ -156,24 +179,17 @@ public class Car implements Comparable<Car> {
 
     public int getId() {return id;}
 
-    public void setCircle(Circle circle) {
-        this.circle = circle;
-    }
-
     public Integer getCurrentSpeed() {
         return currentSpeed;
     }
 
+    // ustawianie predkosci na podstawie limitu jaki obowiazuje na danej drodze
     void setCurrentSpeed(Integer currentSpeed) {
         this.currentSpeed = currentSpeed > street.getSpeedLimit() ? street.getSpeedLimit() : currentSpeed < 0 ? 0 : currentSpeed;
     }
 
     public void setCurrentPosition(int position) {
         this.currentPosition = position;
-    }
-
-    private int getCurrentPosition() {
-        return this.currentPosition;
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+// miejsca w ktorych moga pojawiac sie auta
 public class SpawningPlace {
     private Point spawningPoint;
     private Street street;
@@ -15,35 +16,12 @@ public class SpawningPlace {
         this.percentChance = percentChance;
     }
 
-    public Point getSpawningPoint() {
-        return spawningPoint;
-    }
-
-    public void setSpawningPoint(Point spawningPoint) {
-        this.spawningPoint = spawningPoint;
-    }
-
-    public Street getStreet() {
-        return street;
-    }
-
-    public void setStreet(Street street) {
-        this.street = street;
-    }
-
-    public Integer getPercentChance() {
-        return percentChance;
-    }
-
-    public void setPercentChance(Integer percentChance) {
-        this.percentChance = percentChance;
-    }
-
+    // ustawianie samochodow na miejsca pojawiania
     void spawnCars(int amountOfCars){
         Random rand = new Random();
 
         Set<Point> points = new HashSet<>();
-        //done: Maciek unikalne auta w polu
+
         Integer random;
         for (int i = 0; i < amountOfCars; i++) {
             random = rand.nextInt(street.getNumberOfPositions());
@@ -53,6 +31,7 @@ public class SpawningPlace {
         }
     }
 
+    // tworzenie samochodu
     private Car spawnCar(Point position,int random){
         Car car = new Car(position);
         car.setStreet(street);

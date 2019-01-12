@@ -9,12 +9,15 @@ import java.util.Random;
 
 public class Controller {
 
+    //Panel glowny do wyswietlania
     private Pane root;
 
+    //kontroller
     Controller(Pane root) {
         this.root = root;
     }
 
+    //inicjalizacja modelu
     void initializeModel() {
         int mult = 25;
         // street 1
@@ -70,6 +73,7 @@ public class Controller {
         Point T2 = new Point(0 * mult, 11 * mult);
 
 
+        //dodawanie punktow do modelu (na ich podstawie bedzie mozna robic ulice
         Model.getInstance().setPoints(Arrays.asList(A1, A2, B1, B2, C1, C2, D1, D2, E1, E2, F1, F2, G1, G2, H1, H2,
                 J1, J2, K1, K2, L1, L2, M1, M2, N1, N2, O1, O2, P1, P2, Q1, Q2, R1, R2, S1, S2, T1, T2));
 
@@ -162,8 +166,10 @@ public class Controller {
         RD.setStraight(D);
 
 
+        //dodawanie ulic do modelu
         Model.getInstance().getStreets().addAll(Arrays.asList(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, AO, AT, BN, CI, FE, FT, GS, HN, KJ, KE, LD, MS, PO, PJ, QI, RD));
 
+        //dodawanie punktow pojawiania sie ulic
         Model.getInstance().addSpawningPlace(new SpawningPlace(A1, A, 20));
         Model.getInstance().addSpawningPlace(new SpawningPlace(B1, B, 20));
         Model.getInstance().addSpawningPlace(new SpawningPlace(C1, C, 40));
@@ -228,16 +234,10 @@ public class Controller {
         lightR.setCenterX(R2.getX());
         lightR.setCenterY(R2.getY());
 
+
+        //dodawanie sygnalizacji swietlnej
         Model.getInstance().getLights().addAll(Arrays.asList(lightA,lightB,lightC,lightF,lightG,lightH,lightK,lightL,lightM,lightP,lightQ,lightR));
 
-    }
-
-    public Pane getRoot() {
-        return root;
-    }
-
-    public void setRoot(Pane root) {
-        this.root = root;
     }
 
 }

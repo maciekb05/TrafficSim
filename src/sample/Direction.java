@@ -1,5 +1,6 @@
 package sample;
 
+//klasa odpowiadajaca za wskazanie kiernku jazdy na danej ulicy
 public class Direction {
     private Double x;
     private Double y;

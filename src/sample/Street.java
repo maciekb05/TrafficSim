@@ -6,23 +6,34 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// klasa reprezentujaca ulice
 public class Street {
+    // jaka ulica jest po skrecie w lewo, prawo, prosto
     private Street left = null;
     private Street right = null;
     private Street straight = null;
+    // limit predkosci na ulicy
     private Integer speedLimit = 5;
+    //punkt poczatku ulicy
     private Point start;
+    //punkt konca ulicy
     private Point end;
+    //do narysowania lini na panelu
     private Line line;
+    //kierunek danej ulicy
     private Direction direction;
+    //lista kolejkujaca samochody
     private List<Car> cars;
+    //kolor swiatla na danej ulicy
     private Color lightColor = Color.GREEN;
+    // ilosc miejsc w liscie kolejkujacej
     private int numberOfPositions;
+    // dlugosc ulicy
     private double lenght;
+    //dlugosc jednej komorki w liscie kolejkujacej
     private Integer celllenght = 10;
+    // licznik samochodow ktore przejechaly ulica do statystyk
     private Integer counter = 0;
-
 
 
     Street(Point start, Point end) {
@@ -44,6 +55,7 @@ public class Street {
         }
     }
 
+    //punkt ktory odpowiada indeksowi w liscie kolejkujacej
     public Point getPointOfPosition(int index) {
         int x = (int)(index * direction.getX() * celllenght + start.getX());
         int y = (int)(index * direction.getY() * celllenght + start.getY());
@@ -54,30 +66,18 @@ public class Street {
         return numberOfPositions;
     }
 
-    public void setNumberOfPositions(int numberOfPositions) {
-        this.numberOfPositions = numberOfPositions;
-    }
-
-    public List<Car> getCars() {
+    public List<Car> getCars()    {
         return cars;
     }
 
-    public void addCar(Car car) {
-        this.cars.add(car);
-    }
-
-    public Color getLight() {return lightColor;}
-
+    // czy swiatlo jest zielone?
     public boolean isGreen() {
         return this.lightColor == Color.GREEN;
     }
 
+    //zmiana swiatla
     public void changeLight(Color color) {
         this.lightColor = color;
-    }
-
-    public String whatLight(){
-        return lightColor == Color.GREEN ? "zielone światło" : "nie zielone światło";
     }
 
     public Street getLeft() {
@@ -108,40 +108,16 @@ public class Street {
         return speedLimit;
     }
 
-    public void setSpeedLimit(Integer speedLimit) {
-        this.speedLimit = speedLimit;
-    }
-
     public Point getStart() {
         return start;
-    }
-
-    public void setStart(Point start) {
-        this.start = start;
-    }
-
-    public Point getEnd() {
-        return end;
-    }
-
-    public void setEnd(Point end) {
-        this.end = end;
     }
 
     public Line getLine() {
         return line;
     }
 
-    public void setLine(Line line) {
-        this.line = line;
-    }
-
     public Direction getDirection() {
         return direction;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
     }
 
     public void incrementCounter() {
