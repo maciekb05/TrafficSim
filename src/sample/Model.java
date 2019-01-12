@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.shape.Circle;
 
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,5 +78,27 @@ public class Model {
 
     static Model getInstance() {
         return INSTANCE;
+    }
+
+    public static void printStatistic(List<Street> streets) {
+        List<Street> north = streets.subList(0,2);
+        List<Street> west = streets.subList(5,7);
+        List<Street> south = streets.subList(10,12);
+        List<Street> east = streets.subList(15,17);
+
+        Integer north_counter = 0;
+        Integer west_counter = 0;
+        Integer south_counter = 0;
+        Integer east_counter = 0;
+
+        for (int i=0;i<3;i++){
+            north_counter += streets.get(i).getCounter();
+            west_counter += streets.get(i+5).getCounter();
+            south_counter += streets.get(i+10).getCounter();
+            east_counter += streets.get(i+15).getCounter();
+        }
+
+        System.out.println("Statystyki:\n North: "+north_counter+ "  West: "+west_counter+"  South: "+south_counter+" East: "+east_counter+"\n");
+
     }
 }

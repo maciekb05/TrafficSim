@@ -2,6 +2,7 @@ package sample;
 
 
 public class Simulation extends Thread {
+    private Integer a=0;
 
     @Override
     public void run() {
@@ -14,6 +15,12 @@ public class Simulation extends Thread {
             Model.getInstance().getCars().forEach(Car::setTheSpeedDependingOnTheSpeedAndDistanceOfTheNextCar2);
             Model.getInstance().getCars().forEach(Car::drive);
             Model.getInstance().getCars().forEach(Car::updateActualPosition);
+
+            if (a % 10 == 0){
+                a = 0;
+                Model.printStatistic(Model.getInstance().getStreets());
+            }
+            this.a++;
             //System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXX");
             try {
                 sleep(50);

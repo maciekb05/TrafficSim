@@ -20,6 +20,10 @@ public class Street {
     private Color lightColor = Color.GREEN;
     private int numberOfPositions;
     private double lenght;
+    private Integer celllenght = 10;
+    private Integer counter = 0;
+
+
 
     Street(Point start, Point end) {
         this.start = start;
@@ -31,7 +35,7 @@ public class Street {
         int x = Math.abs(start.getX() - end.getX());
         lenght = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
 
-        numberOfPositions = (int)(lenght/10);
+        numberOfPositions = (int)(lenght/celllenght);
 
         cars = new ArrayList<>(numberOfPositions);
 
@@ -41,8 +45,8 @@ public class Street {
     }
 
     public Point getPointOfPosition(int index) {
-        int x = (int)(index * direction.getX() * 10 + start.getX());
-        int y = (int)(index * direction.getY() * 10 + start.getY());
+        int x = (int)(index * direction.getX() * celllenght + start.getX());
+        int y = (int)(index * direction.getY() * celllenght + start.getY());
         return new Point(x,y);
     }
 
@@ -138,5 +142,13 @@ public class Street {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public void incrementCounter() {
+        this.counter++;
+    }
+
+    public Integer getCounter() {
+        return counter;
     }
 }

@@ -110,6 +110,7 @@ public class Car implements Comparable<Car> {
             if(street.getStraight() != null) st.add(street.getStraight());
             if(street.getRight() != null) st.add(street.getRight());
 
+
             if (st.size() == 0){
                 st.add(Model.getInstance().getStreets().get(0));
                 st.add(Model.getInstance().getStreets().get(1));
@@ -130,6 +131,8 @@ public class Car implements Comparable<Car> {
 
             Random rand = new Random();
             this.nextstreet = st.get(rand.nextInt(st.size()));
+            this.nextstreet.incrementCounter();
+
         }
     }
 
