@@ -72,10 +72,24 @@ public class Controller {
         Point T1 = new Point(8 * mult, 11 * mult);
         Point T2 = new Point(0 * mult, 11 * mult);
 
+        Point CI1P = new Point(13 * mult, 12 * mult);
+        Point CI2P = new Point(15 * mult, 15 * mult);
+
+        Point HN1P = new Point(16 * mult, 13 * mult);
+        Point HN2P = new Point(13 * mult, 15 * mult);
+
+        Point MS1P = new Point(15 * mult, 16 * mult);
+        Point MS2P = new Point(13 * mult, 13 * mult);
+
+        Point RD1P = new Point(12 * mult, 15 * mult);
+        Point RD2P = new Point(15 * mult, 13 * mult);
+
+
 
         //dodawanie punktow do modelu (na ich podstawie bedzie mozna robic ulice
         Model.getInstance().setPoints(Arrays.asList(A1, A2, B1, B2, C1, C2, D1, D2, E1, E2, F1, F2, G1, G2, H1, H2,
-                J1, J2, K1, K2, L1, L2, M1, M2, N1, N2, O1, O2, P1, P2, Q1, Q2, R1, R2, S1, S2, T1, T2));
+                J1, J2, K1, K2, L1, L2, M1, M2, N1, N2, O1, O2, P1, P2, Q1, Q2, R1, R2, S1, S2, T1, T2,
+                CI1P, CI2P, HN1P, HN2P, MS1P, MS2P, RD1P, RD2P));
 
         Street A = new Street(A1, A2);
         Street B = new Street(B1, B2);
@@ -106,22 +120,42 @@ public class Controller {
         Street AO = new Street(A2, O1);
         Street AT = new Street(A2, T1);
         Street BN = new Street(B2, N1);
-        Street CI = new Street(C2, I1);
+
+        //CI
+        Street CI = new Street(C2, CI1P);
+        Street CI1 = new Street(CI1P, CI2P);
+        Street CI2 = new Street(CI2P, I1);
+
 
         Street FE = new Street(F2, E1);
         Street FT = new Street(F2, T1);
         Street GS = new Street(G2, S1);
-        Street HN = new Street(H2, N1);
+
+        //HN
+        Street HN = new Street(H2, HN1P);
+        Street HN1 = new Street(HN1P, HN2P);
+        Street HN2 = new Street(HN2P, N1);
+
 
         Street KJ = new Street(K2, J1);
         Street KE = new Street(K2, E1);
         Street LD = new Street(L2, D1);
-        Street MS = new Street(M2, S1);
+
+        //MS
+        Street MS = new Street(M2, MS1P);
+        Street MS1 = new Street(MS1P, MS2P);
+        Street MS2 = new Street(MS2P, S1);
+
 
         Street PO = new Street(P2, O1);
         Street PJ = new Street(P2, J1);
         Street QI = new Street(Q2, I1);
-        Street RD = new Street(R2, D1);
+
+        //RD
+        Street RD = new Street(R2, RD1P);
+        Street RD1 = new Street(RD1P, RD2P);
+        Street RD2 = new Street(RD2P, D1);
+
 
 
         A.setRight(AT);
@@ -148,27 +182,37 @@ public class Controller {
         AO.setStraight(O);
         AT.setStraight(T);
         BN.setStraight(N);
-        CI.setStraight(I);
+        CI.setStraight(CI1);
+        CI1.setStraight(CI2);
+        CI2.setStraight(I);
 
         FE.setStraight(E);
         FT.setStraight(T);
         GS.setStraight(S);
-        HN.setStraight(N);
+        HN.setStraight(HN1);
+        HN1.setStraight(HN2);
+        HN2.setStraight(N);
 
         KJ.setStraight(J);
         KE.setStraight(E);
         LD.setStraight(D);
-        MS.setStraight(S);
+        MS.setStraight(MS1);
+        MS1.setStraight(MS2);
+        MS2.setStraight(S);
+
 
         PO.setStraight(O);
         PJ.setStraight(J);
         QI.setStraight(I);
-        RD.setStraight(D);
+        RD.setStraight(RD1);
+        RD1.setStraight(RD2);
+        RD2.setStraight(D);
+
 
 
         //dodawanie ulic do modelu
-        Model.getInstance().getStreets().addAll(Arrays.asList(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, AO, AT, BN, CI, FE, FT, GS, HN, KJ, KE, LD, MS, PO, PJ, QI, RD));
-
+        Model.getInstance().getStreets().addAll(Arrays.asList(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, AO, AT, BN, CI, FE, FT, GS, HN, KJ, KE, LD, MS, PO, PJ, QI, RD,
+                CI1, CI2, HN1, HN2, MS1, MS2, RD1, RD2));
         //dodawanie punktow pojawiania sie ulic
         Model.getInstance().addSpawningPlace(new SpawningPlace(A1, A, 20));
         Model.getInstance().addSpawningPlace(new SpawningPlace(B1, B, 20));
