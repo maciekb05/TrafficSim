@@ -40,6 +40,7 @@ public class Street {
         this.start = start;
         this.end = end;
         this.line = new Line(start.getX(), start.getY(), end.getX(), end.getY());
+        this.line.setVisible(false);
         this.direction = new Direction(this.start, this.end);
 
         int y = Math.abs(start.getY() - end.getY());
