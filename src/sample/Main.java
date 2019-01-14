@@ -18,7 +18,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("TrafficSim");
         Pane root = new Pane();
-        File file = new File("D:\\JAVA Projekty\\TrafficSimXXXXX\\src\\sample\\podklad-Model.jpg");
+        File file = new File("./src/sample/podklad-Model.jpg");
         Image img = new Image(file.toURI().toString());
         ImageView imgView = new ImageView(img);
         root.getChildren().add(imgView);
